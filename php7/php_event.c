@@ -1272,6 +1272,7 @@ PHP_MINIT_FUNCTION(event)
 	PHP_EVENT_REG_CLASS_CONST_LONG(php_event_ssl_context_ce, OPT_NO_TLSv1_1,               PHP_EVENT_OPT_NO_TLSv1_1);
 	PHP_EVENT_REG_CLASS_CONST_LONG(php_event_ssl_context_ce, OPT_NO_TLSv1_2,               PHP_EVENT_OPT_NO_TLSv1_2);
 	PHP_EVENT_REG_CLASS_CONST_LONG(php_event_ssl_context_ce, OPT_CIPHER_SERVER_PREFERENCE, PHP_EVENT_OPT_CIPHER_SERVER_PREFERENCE);
+	PHP_EVENT_REG_CLASS_CONST_LONG(php_event_ssl_context_ce, OPT_MATCH_FINGERPRINTS,       PHP_EVENT_OPT_MATCH_FINGERPRINTS);
 
 	/* Initialize openssl library */
 	SSL_load_error_strings();

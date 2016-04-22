@@ -27,13 +27,47 @@
 
 /* {{{ Private */
 
+
+static inline int get_fingerprint(X509* cert, unsigned char *md, unsigned int *n)/*{{{*/
+{
+	const EVP_MD *digest;
+
+	if (!(digest = EVP_get_digestbyname("sha1"))) {
+		php_error_docref(NULL, E_WARNING, "Failed to get digest by 'sha1'");
+		return 0;
+	}
+
+	if (!X509_digest(cert, digest, md, n)) {
+		php_error_docref(NULL, E_WARNING, "Could not generate signature");
+		return 0;
+	}
+
+	return 1;
+}/*}}}*/
+
+
+static inline int compare_certificates(X509 *c1, X509 *c2)/*{{{*/
+{
+	unsigned char md1[EVP_MAX_MD_SIZE], md2[EVP_MAX_MD_SIZE];
+	unsigned int n1, n2;
+
+	if (!(get_fingerprint(c1, md1, &n1) && get_fingerprint(c2, md2, &n2))) {
+		return -1;
+	}
+
+	return memcmp(md1, md2, n1);
+
+}/*}}}*/
+
+
 /* {{{ verify_callback */
 static int verify_callback(int preverify_ok, X509_STORE_CTX *ctx)
 {
 	SSL                      *ssl;
-	int                       ret      = preverify_ok;
+	X509                     *cur_cert;
 	int                       err;
 	int                       depth;
+	char                      buf[256];
 	php_event_ssl_context_t  *ectx;
 	zval                     *pzval   = NULL;
 	HashTable                *ht;
@@ -44,28 +78,51 @@ static int verify_callback(int preverify_ok, X509_STORE_CTX *ctx)
 	PHP_EVENT_ASSERT(ectx && ectx->ht);
 	ht = ectx->ht;
 
-	X509_STORE_CTX_get_current_cert(ctx);
+	cur_cert = X509_STORE_CTX_get_current_cert(ctx);
 	err      = X509_STORE_CTX_get_error(ctx);
 	depth    = X509_STORE_CTX_get_error_depth(ctx);
 
-	/* If OPT_ALLOW_SELF_SIGNED is set and is TRUE, ret = 1 */
-	if (err == X509_V_ERR_DEPTH_ZERO_SELF_SIGNED_CERT
+	X509_NAME_oneline(X509_get_subject_name(cur_cert), buf, sizeof(buf) / sizeof(buf[0]));
+
+	/* If OPT_ALLOW_SELF_SIGNED is set and is TRUE, preverify_ok = 1 */
+	if (!preverify_ok
+			&& (err == X509_V_ERR_DEPTH_ZERO_SELF_SIGNED_CERT)
 			&& (pzval = zend_hash_index_find(ht, PHP_EVENT_OPT_ALLOW_SELF_SIGNED)) != NULL
 			&& zend_is_true(pzval)) {
-		ret = 1;
+		preverify_ok = 1;
 	}
+
+	if (!preverify_ok) {
+		php_error_docref(NULL, E_NOTICE, "verify error:%d:%s:depth=%d:%s",
+				err, X509_verify_cert_error_string(err), depth, buf);
+	}
+
+	/*{{{ Fingerprint check */
+	if (ectx->match_fingerprints) {
+		if (0 != compare_certificates(ctx->current_cert, SSL_CTX_get0_certificate(ssl->ctx))) {
+			php_error_docref(NULL, E_NOTICE, "peer-server certificate mismatch");
+			preverify_ok = 0;
+		}
+	}
+	/*}}}*/
 
 	/* Verify depth, if OPT_VERIFY_DEPTH option is set */
 	if ((pzval = zend_hash_index_find(ht, PHP_EVENT_OPT_VERIFY_DEPTH)) != NULL) {
 		convert_to_long_ex(pzval);
 
 		if (depth > Z_LVAL_P(pzval)) {
-			ret = 0;
-			X509_STORE_CTX_set_error(ctx, X509_V_ERR_CERT_CHAIN_TOO_LONG);
+			preverify_ok = 0;
+			err = X509_V_ERR_CERT_CHAIN_TOO_LONG;
+			X509_STORE_CTX_set_error(ctx, err);
 		}
 	}
 
-	return ret;
+	if (!preverify_ok && (err == X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT)) {
+		X509_NAME_oneline(X509_get_issuer_name(ctx->current_cert), buf, sizeof(buf)/ sizeof(buf[0]));
+		php_error_docref(NULL, E_NOTICE, "unable to get issuer certificate, issuer: %s", buf);
+	}
+
+	return preverify_ok;
 }
 /* }}} */
 
@@ -159,8 +216,10 @@ int _php_event_ssl_ctx_set_local_cert(SSL_CTX *ctx, const char *certfile, const 
 /* }}} */
 
 /* {{{ set_ssl_ctx_options */
-static inline void set_ssl_ctx_options(SSL_CTX *ctx, HashTable *ht)
+static inline void set_ssl_ctx_options(php_event_ssl_context_t *ectx)
 {
+	SSL_CTX     *ctx         = ectx->ctx;
+	HashTable   *ht          = ectx->ht;
 	zend_string *key;
 	zval        *zv;
 	zend_ulong   idx;
@@ -266,6 +325,9 @@ static inline void set_ssl_ctx_options(SSL_CTX *ctx, HashTable *ht)
 				got_ciphers = 1;
 				convert_to_string_ex(zv);
 				set_ciphers(ctx, Z_STRVAL_P(zv));
+				break;
+			case PHP_EVENT_OPT_MATCH_FINGERPRINTS:
+				ectx->match_fingerprints = (zend_bool) zend_is_true(zv);
 				break;
 			default:
 				php_error_docref(NULL, E_WARNING, "Unknown option %ld", idx);
@@ -417,7 +479,7 @@ PHP_METHOD(EventSslContext, __construct)
 	zend_hash_copy(ectx->ht, ht_options, (copy_ctor_func_t) zval_add_ref);
 
 	SSL_CTX_set_options(ectx->ctx, options);
-	set_ssl_ctx_options(ectx->ctx, ectx->ht);
+	set_ssl_ctx_options(ectx);
 
 	/* Issue #20 */
 	SSL_CTX_set_session_id_context(ectx->ctx, (unsigned char *)(void *)ectx->ctx, sizeof(ectx->ctx));
