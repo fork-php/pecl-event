@@ -167,7 +167,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_bufferevent_read, 0, 0, 1)
 ZEND_END_ARG_INFO();
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_bufferevent_pair_new, 0, 0, 1)
-	ZEND_ARG_OBJ_INFO(0, base, EventBase, 0)
+	ZEND_ARG_OBJ_INFO(1, base, EventBase, 0)
 	ZEND_ARG_INFO(0, options)
 ZEND_END_ARG_INFO();
 
