@@ -224,6 +224,7 @@ static inline void set_ssl_ctx_options(php_event_ssl_context_t *ectx)
 	zval        *zv;
 	zend_ulong   idx;
 	zend_bool    got_ciphers = 0;
+	int          verify_mode = 0;
 	char        *cafile      = NULL;
 	char        *capath      = NULL;
 
@@ -311,11 +312,7 @@ static inline void set_ssl_ctx_options(php_event_ssl_context_t *ectx)
 				/* Skip */
 				break;
 			case PHP_EVENT_OPT_VERIFY_PEER:
-				if (zend_is_true(zv)) {
-					SSL_CTX_set_verify(ctx, SSL_VERIFY_PEER, verify_callback);
-				} else {
-					SSL_CTX_set_verify(ctx, SSL_VERIFY_NONE, NULL);
-				}
+				verify_mode |= zend_is_true(zv) ? SSL_VERIFY_PEER : SSL_VERIFY_NONE;
 				break;
 			case PHP_EVENT_OPT_VERIFY_DEPTH:
 				convert_to_long_ex(zv);
@@ -328,11 +325,16 @@ static inline void set_ssl_ctx_options(php_event_ssl_context_t *ectx)
 				break;
 			case PHP_EVENT_OPT_MATCH_FINGERPRINTS:
 				ectx->match_fingerprints = (zend_bool) zend_is_true(zv);
+				verify_mode |= SSL_VERIFY_PEER | SSL_VERIFY_FAIL_IF_NO_PEER_CERT;
 				break;
 			default:
 				php_error_docref(NULL, E_WARNING, "Unknown option %ld", idx);
 		}
 	} ZEND_HASH_FOREACH_END();
+
+	if (verify_mode) {
+		SSL_CTX_set_verify(ctx, verify_mode, (verify_mode == SSL_VERIFY_NONE ? NULL : verify_callback));
+	}
 
 	if (got_ciphers == 0) {
 		set_ciphers(ctx, "DEFAULT");
