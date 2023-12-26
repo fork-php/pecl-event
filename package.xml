@@ -32,28 +32,19 @@
     <email>remi@php.net</email>
     <active>yes</active>
   </contributor>
-  <date>2023-10-14</date>
+  <date>2023-12-26</date>
   <!--{{{ Current version -->
   <version>
-    <release>3.1.0RC1</release>
-    <api>3.1.0RC1</api>
+    <release>3.1.0</release>
+    <api>3.1.0</api>
   </version>
   <stability>
-    <release>beta</release>
-    <api>beta</api>
+    <release>stable</release>
+    <api>stable</api>
   </stability>
   <license uri="http://www.php.net/license">PHP</license>
   <notes><![CDATA[
-    - The loop will now be stopped if an event callback throws an exception.
-      This prevents user from losing control on the event loop.
-    - EventDnsBase::__construct() now accepts bool|int as its second parameter:
-        * false and true have the same meaning as before;
-        * EventDnsBase::DISABLE_WHEN_INACTIVE - Do not prevent the libevent event loop from exiting when we have no active DNS requests.
-        * EventDnsBase::INITIALIZE_NAMESERVERS - Process resolv.conf.
-        * EventDnsBase::NAMESERVERS_NO_DEFAULT - Do not add default nameserver if there are no nameservers in resolv.conf.
-    - Internally, a safer strlcpy() will be used instead of strcpy().
-    - Fixed a segmentation fault that might occur in the EventHttpRequest callback.
-    - Fixed a bug where the EventBuffer::copyout method didn't populate the output variable properly in PHP >= 8.2 (thanks to Joseph Tseng).
+    Stable version based on 3.1.0RC1. Refer to release notes of 3.1.0RC1 for details.
     ]]></notes>
   <!--}}}-->
   <!--{{{ Contents -->
@@ -259,6 +250,22 @@
   </extsrcrelease>
   <!--{{{ changelog-->
   <changelog>
+    <!--{{{ 3.1.0 -->
+    <release>
+      <version>
+        <release>3.1.0</release>
+        <api>3.1.0</api>
+      </version>
+      <stability>
+        <release>stable</release>
+        <api>stable</api>
+      </stability>
+      <license uri="http://www.php.net/license">PHP</license>
+      <notes><![CDATA[
+    Stable version based on 3.1.0RC1. Refer to release notes of 3.1.0RC1 for details.
+    ]]></notes>
+    </release>
+    <!--}}}-->
     <!--{{{ 3.1.0RC1-->
     <release>
       <version>
