@@ -37,3 +37,13 @@ services:
         volumes:
           - /usr/src/pecl-event/build
           - /usr/src/pecl-event/modules
+
+    php7rhel8test:
+        stdin_open: true
+        image: ruslanosmanov/pecl-event-php7rhel8-test
+        build:
+            context: .
+            dockerfile: php7/Dockerfile.rhel8
+        volumes:
+          - /usr/src/pecl-event/build
+          - /usr/src/pecl-event/modules

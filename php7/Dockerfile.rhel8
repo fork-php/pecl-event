@@ -1,0 +1,15 @@
+FROM redhat/ubi8
+
+RUN dnf install -y openssl openssl-devel openssl-libs libevent libevent-devel php-cli php-devel make
+
+RUN mkdir -p /usr/src/pecl-event
+WORKDIR /usr/src/pecl-event
+
+COPY . .
+
+RUN ./rebuild.sh
+
+ENV NO_INTERACTION=1
+CMD ./run-tests.sh
+
+# vim: ft=dockerfile

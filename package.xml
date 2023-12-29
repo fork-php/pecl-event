@@ -32,10 +32,10 @@
     <email>remi@php.net</email>
     <active>yes</active>
   </contributor>
-  <date>2023-12-26</date>
+  <date>2023-12-29</date>
   <!--{{{ Current version -->
   <version>
-    <release>3.1.0</release>
+    <release>3.1.1</release>
     <api>3.1.0</api>
   </version>
   <stability>
@@ -44,7 +44,7 @@
   </stability>
   <license uri="http://www.php.net/license">PHP</license>
   <notes><![CDATA[
-    Stable version based on 3.1.0RC1. Refer to release notes of 3.1.0RC1 for details.
+    Fixed build in RHEL 7 and 8 (thanks to Remi Collet).
     ]]></notes>
   <!--}}}-->
   <!--{{{ Contents -->
@@ -250,6 +250,22 @@
   </extsrcrelease>
   <!--{{{ changelog-->
   <changelog>
+    <!--{{{ 3.1.1 -->
+    <release>
+      <version>
+        <release>3.1.1</release>
+        <api>3.1.0</api>
+      </version>
+      <stability>
+        <release>stable</release>
+        <api>stable</api>
+      </stability>
+      <license uri="http://www.php.net/license">PHP</license>
+      <notes><![CDATA[
+    Fixed build in RHEL 7 and 8 (thanks to Remi Collet).
+    ]]></notes>
+    </release>
+    <!--}}}-->
     <!--{{{ 3.1.0 -->
     <release>
       <version>
