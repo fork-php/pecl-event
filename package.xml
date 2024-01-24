@@ -32,11 +32,11 @@
     <email>remi@php.net</email>
     <active>yes</active>
   </contributor>
-  <date>2023-12-29</date>
+  <date>2024-01-24</date>
   <!--{{{ Current version -->
   <version>
-    <release>3.1.1</release>
-    <api>3.1.0</api>
+    <release>3.1.2</release>
+    <api>3.1.2</api>
   </version>
   <stability>
     <release>stable</release>
@@ -44,7 +44,7 @@
   </stability>
   <license uri="http://www.php.net/license">PHP</license>
   <notes><![CDATA[
-    Fixed build in RHEL 7 and 8 (thanks to Remi Collet).
+    Fixed an issue in EventDnsBase::__construct() where it failed to accept the init flag set to true when using libevent version < 2.1.0.
     ]]></notes>
   <!--}}}-->
   <!--{{{ Contents -->
@@ -250,6 +250,20 @@
   </extsrcrelease>
   <!--{{{ changelog-->
   <changelog>
+    <!--{{{ 3.1.2 -->
+    <version>
+      <release>3.1.2</release>
+      <api>3.1.2</api>
+    </version>
+    <stability>
+      <release>stable</release>
+      <api>stable</api>
+    </stability>
+    <license uri="http://www.php.net/license">PHP</license>
+    <notes><![CDATA[
+    Fixed an issue in EventDnsBase::__construct() where it failed to accept the init flag set to true when using libevent version < 2.1.0.
+    ]]></notes>
+    <!--}}}-->
     <!--{{{ 3.1.1 -->
     <release>
       <version>

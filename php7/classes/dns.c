@@ -77,6 +77,9 @@ PHP_METHOD(EventDnsBase, __construct)
 			zend_throw_exception_ex(php_event_get_exception(), 0, "Invalid initialization flags");
 			goto fail;
 		}
+#else
+	} else if (Z_TYPE_P(zinitialize) == IS_TRUE) { /* libevent vesion < 2.1.0 */
+		flags = 1;
 #endif /* libevent version >= 2.1 */
 	} else {
 		zend_throw_exception_ex(php_event_get_exception(), 0, "Invalid type of the initialization flags");
