@@ -20,7 +20,7 @@
 #include "../src/priv.h"
 #include <limits.h>
 
-/* {{{ proto EventDnsBase EventDnsBase::__construct(EventBase base, mixed initialize);
+/* {{{ proto EventDnsBase EventDnsBase::__construct(EventBase base, int|bool initialize);
  *
  * Returns object representing event dns base.
  *
@@ -65,7 +65,7 @@ PHP_EVENT_METHOD(EventDnsBase, __construct)
 
 		if (lflags > INT_MAX || lflags < INT_MIN) {
 			zend_throw_exception_ex(php_event_get_exception(), 0, "The value of initialization flags is out of range");
-			goto fail;
+			RETURN_THROWS();
 		}
 		flags = lflags;
 
@@ -75,22 +75,20 @@ PHP_EVENT_METHOD(EventDnsBase, __construct)
 #endif
 					| EVDNS_BASE_INITIALIZE_NAMESERVERS)) {
 			zend_throw_exception_ex(php_event_get_exception(), 0, "Invalid initialization flags");
-			goto fail;
+			RETURN_THROWS();
 		}
 #else
 	} else if (Z_TYPE_P(zinitialize) == IS_TRUE) { /* libevent vesion < 2.1.0 */
 		flags = 1;
 #endif /* libevent version >= 2.1 */
 	} else {
-		zend_throw_exception_ex(php_event_get_exception(), 0, "Invalid type of the initialization flags");
-		goto fail;
+		zend_argument_type_error(2, "must be of type int|bool, %s given", zend_zval_type_name(zinitialize));
+		RETURN_THROWS();
 	}
 
 	if (dnsb != NULL) {
 		dnsb->dns_base = evdns_base_new(base->base, flags);
 	}
-fail:
-	;
 }
 /* }}} */
 

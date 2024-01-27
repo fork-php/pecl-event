@@ -20,7 +20,7 @@
 #include "../src/priv.h"
 #include "zend_exceptions.h"
 
-/* {{{ proto EventDnsBase EventDnsBase::__construct(EventBase base, mixed initialize);
+/* {{{ proto EventDnsBase EventDnsBase::__construct(EventBase base, int|bool initialize);
  *
  * Returns object representing event dns base.
  *
@@ -82,7 +82,8 @@ PHP_METHOD(EventDnsBase, __construct)
 		flags = 1;
 #endif /* libevent version >= 2.1 */
 	} else {
-		zend_throw_exception_ex(php_event_get_exception(), 0, "Invalid type of the initialization flags");
+		zend_type_error("EventDnsBase::__construct(): Argument #2 ($initialize) must be of type int|bool, %s given",
+				zend_zval_type_name(zinitialize));
 		goto fail;
 	}
 

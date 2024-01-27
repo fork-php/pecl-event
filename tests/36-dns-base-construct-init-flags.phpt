@@ -2,6 +2,9 @@
 Check for EventDnsBase::__construct parsing of the initialization flags
 --SKIPIF--
 <?php
+if (PHP_VERSION_ID < 80000) {
+	die("skip only for PHP 8+");
+}
 if (!class_exists(EVENT_NS . "\\EventDnsBase")) {
 	die("skip Event extra functions are disabled");
 }
@@ -35,13 +38,13 @@ echo "NAMESERVERS_NO_DEFAULT: ok\n";
 
 try {
     new $eventDnsBaseClass($base, -1);
-} catch (\Exception $e) {
+} catch (\Throwable $e) {
     printf("Invalid flags value exception %s: %s\n", get_class($e), $e->getMessage());
 }
 
 try {
     new $eventDnsBaseClass($base, new \stdClass());
-} catch (\Exception $e) {
+} catch (TypeError $e) {
     printf("Invalid flags type exception %s: %s\n", get_class($e), $e->getMessage());
 }
 ?>
@@ -52,4 +55,4 @@ INITIALIZE_NAMESERVERS: ok
 DISABLE_WHEN_INACTIVE: ok
 NAMESERVERS_NO_DEFAULT: ok
 Invalid flags value exception EventException: Invalid initialization flags
-Invalid flags type exception EventException: Invalid type of the initialization flags
+Invalid flags type exception TypeError: EventDnsBase::__construct(): Argument #2 ($initialize) must be of type int|bool, stdClass given
