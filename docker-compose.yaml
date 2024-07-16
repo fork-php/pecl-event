@@ -7,36 +7,30 @@ services:
         build:
             context: .
             dockerfile: php8/Dockerfile
-        volumes:
-          - /usr/src/pecl-event/build
-          - /usr/src/pecl-event/modules
     php81test:
         stdin_open: true
-        image: ruslanosmanov/pecl-event-php8-test
+        image: ruslanosmanov/pecl-event-php81-test
         build:
             context: .
             dockerfile: php8/Dockerfile-php8.1
-        volumes:
-          - /usr/src/pecl-event/build
-          - /usr/src/pecl-event/modules
     php82test:
         stdin_open: true
-        image: ruslanosmanov/pecl-event-php8-test
+        image: ruslanosmanov/pecl-event-php82-test
         build:
             context: .
             dockerfile: php8/Dockerfile-php8.2
-        volumes:
-          - /usr/src/pecl-event/build
-          - /usr/src/pecl-event/modules
+    php84test:
+        stdin_open: true
+        image: ruslanosmanov/pecl-event-php84-test
+        build:
+            context: .
+            dockerfile: php8/Dockerfile-php8.4
     php7test:
         stdin_open: true
         image: ruslanosmanov/pecl-event-php7-test
         build:
             context: .
             dockerfile: php7/Dockerfile
-        volumes:
-          - /usr/src/pecl-event/build
-          - /usr/src/pecl-event/modules
 
     php7rhel8test:
         stdin_open: true
@@ -44,6 +38,3 @@ services:
         build:
             context: .
             dockerfile: php7/Dockerfile.rhel8
-        volumes:
-          - /usr/src/pecl-event/build
-          - /usr/src/pecl-event/modules

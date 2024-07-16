@@ -13,6 +13,6 @@ COPY . .
 RUN ./rebuild.sh
 
 ENV NO_INTERACTION=1
-CMD ./run-tests.sh
+CMD ["./run-tests.sh"]
 
 # vim: ft=dockerfile
