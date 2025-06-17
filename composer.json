@@ -1,0 +1,12 @@
+{
+    "name": "osmanov/pecl-event",
+    "type": "php-ext",
+    "license": "PHP-3.01",
+    "description": "Provides interface to libevent library.",
+    "require": {
+        "php": ">= 5.4.0"
+    },
+    "php-ext": {
+        "extension-name": "event"
+    }
+}
