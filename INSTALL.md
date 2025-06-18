@@ -31,8 +31,8 @@ distributions:
 Libevent can also be compiled from source, and the source code is available its
 [homepage](http://libevent.org/).
 
-AUTOMATIC INSTALLATION
-----------------------
+AUTOMATIC INSTALLATION USING pecl COMMAND
+-----------------------------------------
 
 Run the following as `root`:
 
@@ -40,6 +40,10 @@ Run the following as `root`:
 pecl install package.xml
 ```
 
+AUTOMATIC INSTALLATION USING Packagist.org
+------------------------------------------
+
+Please refer to the [extension's page on Packagist.org](https://packagist.org/packages/osmanov/pecl-event) for the installation instructions.
 
 MANUAL INSTALLATION
 -------------------
