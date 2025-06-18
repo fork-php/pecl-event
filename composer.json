@@ -7,6 +7,48 @@
         "php": ">= 5.4.0"
     },
     "php-ext": {
-        "extension-name": "event"
+        "extension-name": "event",
+        "configure-options": [
+            {
+                "name": "with-event-pthreads",
+                "description": "Include libevent's pthreads library and enable thread safety support in Event",
+                "needs-value": false
+            },
+            {
+                "name": "with-event-extra",
+                "description": "Event extra functionality support(protocol-specific functionality support including HTTP, DNS, and RPC)",
+                "needs-value": true
+            },
+            {
+                "name": "with-event-openssl",
+                "description": "OpenSSL support in Event",
+                "needs-value": false
+            },
+            {
+                "name": "with-event-ns",
+                "description": "custom PHP namespace for all Event classes",
+                "needs-value": true
+            },
+            {
+                "name": "with-openssl-dir",
+                "description": "OpenSSL installation prefix",
+                "needs-value": true
+            },
+            {
+                "name": "with-event-libevent-dir",
+                "description": "libevent installation prefix",
+                "needs-value": true
+            },
+            {
+                "name": "enable-event-debug",
+                "description": "Enable debug support in Event",
+                "needs-value": false
+            },
+            {
+                "name": "enable-event-sockets",
+                "description": "Enable sockets support in Event",
+                "needs-value": false
+            }
+        ]
     }
 }
