@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
-<package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+<package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0"
+  xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd
+                      http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
   <name>event</name>
   <channel>pecl.php.net</channel>
   <summary>Provides interface to libevent library</summary>
@@ -32,10 +35,10 @@
     <email>remi@php.net</email>
     <active>yes</active>
   </contributor>
-  <date>2024-07-16</date>
-  <!--{{{ Current version -->
+  <date>2026-02-06</date>
+  <!-- {{{ Current version -->
   <version>
-    <release>3.1.4</release>
+    <release>3.1.5</release>
     <api>3.1.4</api>
   </version>
   <stability>
@@ -44,189 +47,189 @@
   </stability>
   <license uri="http://www.php.net/license">PHP</license>
   <notes><![CDATA[
-    Fixed tests failing with PHP 8.4.0-alpha1 (thanks to Remi Collet).
+    PIE/Packagist release.
     ]]></notes>
-  <!--}}}-->
-  <!--{{{ Contents -->
+  <!-- }}} -->
+  <!-- {{{ Contents -->
   <contents>
     <dir name="/">
-      <file role="doc" name="CREDITS"/>
-      <file role="doc" name="INSTALL.md"/>
-      <file role="doc" name="LICENSE"/>
-      <file role="doc" name="README.md"/>
-      <file role="src" name="config.m4"/>
-      <file role="src" name="config.w32"/>
+      <file role="doc" name="CREDITS" />
+      <file role="doc" name="INSTALL.md" />
+      <file role="doc" name="LICENSE" />
+      <file role="doc" name="README.md" />
+      <file role="src" name="config.m4" />
+      <file role="src" name="config.w32" />
       <dir name="php5">
-        <file role="src" name="php_event.c"/>
-        <file role="src" name="php_event.h"/>
+        <file role="src" name="php_event.c" />
+        <file role="src" name="php_event.h" />
         <dir name="classes">
-          <file role="src" name="base.c"/>
-          <file role="src" name="buffer.c"/>
-          <file role="src" name="buffer_event.c"/>
-          <file role="src" name="dns.c"/>
-          <file role="src" name="event.c"/>
-          <file role="src" name="event_config.c"/>
-          <file role="src" name="event_util.c"/>
-          <file role="src" name="http.c"/>
-          <file role="src" name="http.h"/>
-          <file role="src" name="http_connection.c"/>
-          <file role="src" name="http_request.c"/>
-          <file role="src" name="listener.c"/>
-          <file role="src" name="ssl_context.h"/>
-          <file role="src" name="ssl_context.c"/>
+          <file role="src" name="base.c" />
+          <file role="src" name="buffer.c" />
+          <file role="src" name="buffer_event.c" />
+          <file role="src" name="dns.c" />
+          <file role="src" name="event.c" />
+          <file role="src" name="event_config.c" />
+          <file role="src" name="event_util.c" />
+          <file role="src" name="http.c" />
+          <file role="src" name="http.h" />
+          <file role="src" name="http_connection.c" />
+          <file role="src" name="http_request.c" />
+          <file role="src" name="listener.c" />
+          <file role="src" name="ssl_context.h" />
+          <file role="src" name="ssl_context.c" />
         </dir>
         <dir name="src">
-          <file role="src" name="common.h"/>
-          <file role="src" name="fe.c"/>
-          <file role="src" name="fe.h"/>
-          <file role="src" name="pe.c"/>
-          <file role="src" name="priv.h"/>
-          <file role="src" name="structs.h"/>
-          <file role="src" name="util.c"/>
-          <file role="src" name="util.h"/>
+          <file role="src" name="common.h" />
+          <file role="src" name="fe.c" />
+          <file role="src" name="fe.h" />
+          <file role="src" name="pe.c" />
+          <file role="src" name="priv.h" />
+          <file role="src" name="structs.h" />
+          <file role="src" name="util.c" />
+          <file role="src" name="util.h" />
         </dir>
       </dir>
       <dir name="php7">
-        <file role="src" name="php_event.c"/>
-        <file role="src" name="php_event.h"/>
+        <file role="src" name="php_event.c" />
+        <file role="src" name="php_event.h" />
         <dir name="classes">
-          <file role="src" name="base.c"/>
-          <file role="src" name="buffer.c"/>
-          <file role="src" name="buffer_event.c"/>
-          <file role="src" name="dns.c"/>
-          <file role="src" name="event.c"/>
-          <file role="src" name="event_config.c"/>
-          <file role="src" name="event_util.c"/>
-          <file role="src" name="http.c"/>
-          <file role="src" name="http.h"/>
-          <file role="src" name="http_connection.c"/>
-          <file role="src" name="http_request.c"/>
-          <file role="src" name="listener.c"/>
-          <file role="src" name="ssl_context.h"/>
-          <file role="src" name="ssl_context.c"/>
+          <file role="src" name="base.c" />
+          <file role="src" name="buffer.c" />
+          <file role="src" name="buffer_event.c" />
+          <file role="src" name="dns.c" />
+          <file role="src" name="event.c" />
+          <file role="src" name="event_config.c" />
+          <file role="src" name="event_util.c" />
+          <file role="src" name="http.c" />
+          <file role="src" name="http.h" />
+          <file role="src" name="http_connection.c" />
+          <file role="src" name="http_request.c" />
+          <file role="src" name="listener.c" />
+          <file role="src" name="ssl_context.h" />
+          <file role="src" name="ssl_context.c" />
         </dir>
         <dir name="src">
-          <file role="src" name="common.h"/>
-          <file role="src" name="fe.c"/>
-          <file role="src" name="fe.h"/>
-          <file role="src" name="pe.c"/>
-          <file role="src" name="priv.h"/>
-          <file role="src" name="structs.h"/>
-          <file role="src" name="util.c"/>
-          <file role="src" name="util.h"/>
+          <file role="src" name="common.h" />
+          <file role="src" name="fe.c" />
+          <file role="src" name="fe.h" />
+          <file role="src" name="pe.c" />
+          <file role="src" name="priv.h" />
+          <file role="src" name="structs.h" />
+          <file role="src" name="util.c" />
+          <file role="src" name="util.h" />
         </dir>
       </dir>
       <dir name="php8">
-        <file role="src" name="php_event.c"/>
-        <file role="src" name="php_event.h"/>
-        <file role="src" name="arginfo.h"/>
-        <file role="src" name="php_event_arginfo.h"/>
-        <file role="src" name="php_event.stub.php.in"/>
+        <file role="src" name="php_event.c" />
+        <file role="src" name="php_event.h" />
+        <file role="src" name="arginfo.h" />
+        <file role="src" name="php_event_arginfo.h" />
+        <file role="src" name="php_event.stub.php.in" />
         <dir name="src">
-          <file role="src" name="common.h"/>
-          <file role="src" name="fe.c"/>
-          <file role="src" name="pe.c"/>
-          <file role="src" name="priv.h"/>
-          <file role="src" name="structs.h"/>
-          <file role="src" name="util.c"/>
-          <file role="src" name="util.h"/>
+          <file role="src" name="common.h" />
+          <file role="src" name="fe.c" />
+          <file role="src" name="pe.c" />
+          <file role="src" name="priv.h" />
+          <file role="src" name="structs.h" />
+          <file role="src" name="util.c" />
+          <file role="src" name="util.h" />
         </dir>
         <dir name="classes">
-          <file role="src" name="base.c"/>
-          <file role="src" name="buffer.c"/>
-          <file role="src" name="buffer_event.c"/>
-          <file role="src" name="dns.c"/>
-          <file role="src" name="event.c"/>
-          <file role="src" name="event_config.c"/>
-          <file role="src" name="event_util.c"/>
-          <file role="src" name="http.c"/>
-          <file role="src" name="http.h"/>
-          <file role="src" name="http_connection.c"/>
-          <file role="src" name="http_request.c"/>
-          <file role="src" name="listener.c"/>
-          <file role="src" name="ssl_context.c"/>
-          <file role="src" name="ssl_context.h"/>
+          <file role="src" name="base.c" />
+          <file role="src" name="buffer.c" />
+          <file role="src" name="buffer_event.c" />
+          <file role="src" name="dns.c" />
+          <file role="src" name="event.c" />
+          <file role="src" name="event_config.c" />
+          <file role="src" name="event_util.c" />
+          <file role="src" name="http.c" />
+          <file role="src" name="http.h" />
+          <file role="src" name="http_connection.c" />
+          <file role="src" name="http_request.c" />
+          <file role="src" name="listener.c" />
+          <file role="src" name="ssl_context.c" />
+          <file role="src" name="ssl_context.h" />
         </dir>
       </dir>
       <dir name="examples">
-        <file role="doc" name="buffer_proxy.php"/>
+        <file role="doc" name="buffer_proxy.php" />
         <dir name="ssl-echo-server">
-          <file role="doc" name="server.php"/>
-          <file role="doc" name="client.php"/>
+          <file role="doc" name="server.php" />
+          <file role="doc" name="client.php" />
         </dir>
-        <file role="doc" name="eio.php"/>
-        <file role="doc" name="fibonacci_buffer.php"/>
-        <file role="doc" name="http.php"/>
-        <file role="doc" name="http_accept.php"/>
-        <file role="doc" name="http_alias.php"/>
-        <file role="doc" name="http_bind.php"/>
-        <file role="doc" name="http_closecb.php"/>
-        <file role="doc" name="http_request.php"/>
-        <file role="doc" name="httpv0client.php"/>
-        <file role="doc" name="httpv0client2.php"/>
-        <file role="doc" name="https.php"/>
-        <file role="doc" name="listener.php"/>
-        <file role="doc" name="misc.php"/>
-        <file role="doc" name="signal.php"/>
-        <file role="doc" name="sslfilter.php"/>
-        <file role="doc" name="ssl-connection.php"/>
-        <file role="doc" name="timer.php"/>
-        <file role="doc" name="uppercase_proxy.php"/>
+        <file role="doc" name="eio.php" />
+        <file role="doc" name="fibonacci_buffer.php" />
+        <file role="doc" name="http.php" />
+        <file role="doc" name="http_accept.php" />
+        <file role="doc" name="http_alias.php" />
+        <file role="doc" name="http_bind.php" />
+        <file role="doc" name="http_closecb.php" />
+        <file role="doc" name="http_request.php" />
+        <file role="doc" name="httpv0client.php" />
+        <file role="doc" name="httpv0client2.php" />
+        <file role="doc" name="https.php" />
+        <file role="doc" name="listener.php" />
+        <file role="doc" name="misc.php" />
+        <file role="doc" name="signal.php" />
+        <file role="doc" name="sslfilter.php" />
+        <file role="doc" name="ssl-connection.php" />
+        <file role="doc" name="timer.php" />
+        <file role="doc" name="uppercase_proxy.php" />
       </dir>
       <dir name="tests">
-        <file role="test" name="01-load.phpt"/>
-        <file role="test" name="02-features.phpt"/>
-        <file role="test" name="03-event-del.phpt"/>
-        <file role="test" name="04-bevent-socket.phpt"/>
-        <file role="test" name="05-buffer-pos.phpt"/>
-        <file role="test" name="06-timer.phpt"/>
-        <file role="test" name="07-listener-error-win32.phpt"/>
-        <file role="test" name="07-listener-error.phpt"/>
-        <file role="test" name="08-buffer.phpt"/>
-        <file role="test" name="09-gc-cycles.phpt"/>
-        <file role="test" name="10-event-data-dtor.phpt"/>
-        <file role="test" name="11-gc-cycles.phpt"/>
-        <file role="test" name="12-serialization.phpt"/>
-        <file role="test" name="13-bevent-pair.phpt"/>
-        <file role="test" name="14-php5-httpconn-error.phpt"/>
-        <file role="test" name="15-php5-dnsbase-error.phpt"/>
-        <file role="test" name="16-php5-http-error.phpt"/>
-        <file role="test" name="17-event-settimer-error.phpt"/>
-        <file role="test" name="18-timer-error.phpt"/>
-        <file role="test" name="19-event-signal-error.phpt"/>
-        <file role="test" name="20-bevent-error.phpt"/>
-        <file role="test" name="21-bevent-sslfilter.phpt"/>
-        <file role="test" name="21-bevent-sslsocket.phpt"/>
-        <file role="test" name="22-php5-bevent-pair-error.phpt"/>
-        <file role="test" name="23-php5-listener-error.phpt"/>
-        <file role="test" name="24-php5-bevent-sslfilter-error.phpt"/>
-        <file role="test" name="25-php5-bevent-sslsocket-error.phpt"/>
-        <file role="test" name="26-http-debug-info.phpt"/>
-        <file role="test" name="27-event-util-create-socket.phpt"/>
-        <file role="test" name="27-event-util-create-socket_php8.phpt"/>
-        <file role="test" name="28-bevent-ssl.phpt"/>
-        <file role="test" name="28-bevent-ssl1.1.0.phpt"/>
-        <file role="test" name="29-buffer-pullup.phpt"/>
-        <file role="test" name="30-listener-free.phpt"/>
-        <file role="test" name="31-issue.phpt"/>
-        <file role="test" name="32-buffer-copyout.phpt"/>
-        <file role="test" name="33-bevent-event-cb-exception.phpt"/>
-        <file role="test" name="33-bevent-read-cb-exception.phpt"/>
-        <file role="test" name="33-bevent-write-cb-exception.phpt"/>
-        <file role="test" name="34-event-callback-exit.phpt"/>
-        <file role="test" name="35-dns-base-parse-resolv-conf-error.phpt"/>
-        <file role="test" name="36-dns-base-construct-init-flags.phpt"/>
-        <file role="test" name="49-issue.phpt"/>
-        <file role="test" name="54-event-config-set-flags.phpt"/>
-        <file role="test" name="61-issue.phpt"/>
-        <file role="test" name="61-issue_php_pre_8_2_0.phpt"/>
-        <file role="test" name="69-issue-event-cb-failure_php7.phpt"/>
-        <file role="test" name="69-issue-event-cb-failure_php8.phpt"/>
-        <file role="test" name="69-issue-event-cb-failure_php_pre_8_2_0.phpt"/>
+        <file role="test" name="01-load.phpt" />
+        <file role="test" name="02-features.phpt" />
+        <file role="test" name="03-event-del.phpt" />
+        <file role="test" name="04-bevent-socket.phpt" />
+        <file role="test" name="05-buffer-pos.phpt" />
+        <file role="test" name="06-timer.phpt" />
+        <file role="test" name="07-listener-error-win32.phpt" />
+        <file role="test" name="07-listener-error.phpt" />
+        <file role="test" name="08-buffer.phpt" />
+        <file role="test" name="09-gc-cycles.phpt" />
+        <file role="test" name="10-event-data-dtor.phpt" />
+        <file role="test" name="11-gc-cycles.phpt" />
+        <file role="test" name="12-serialization.phpt" />
+        <file role="test" name="13-bevent-pair.phpt" />
+        <file role="test" name="14-php5-httpconn-error.phpt" />
+        <file role="test" name="15-php5-dnsbase-error.phpt" />
+        <file role="test" name="16-php5-http-error.phpt" />
+        <file role="test" name="17-event-settimer-error.phpt" />
+        <file role="test" name="18-timer-error.phpt" />
+        <file role="test" name="19-event-signal-error.phpt" />
+        <file role="test" name="20-bevent-error.phpt" />
+        <file role="test" name="21-bevent-sslfilter.phpt" />
+        <file role="test" name="21-bevent-sslsocket.phpt" />
+        <file role="test" name="22-php5-bevent-pair-error.phpt" />
+        <file role="test" name="23-php5-listener-error.phpt" />
+        <file role="test" name="24-php5-bevent-sslfilter-error.phpt" />
+        <file role="test" name="25-php5-bevent-sslsocket-error.phpt" />
+        <file role="test" name="26-http-debug-info.phpt" />
+        <file role="test" name="27-event-util-create-socket.phpt" />
+        <file role="test" name="27-event-util-create-socket_php8.phpt" />
+        <file role="test" name="28-bevent-ssl.phpt" />
+        <file role="test" name="28-bevent-ssl1.1.0.phpt" />
+        <file role="test" name="29-buffer-pullup.phpt" />
+        <file role="test" name="30-listener-free.phpt" />
+        <file role="test" name="31-issue.phpt" />
+        <file role="test" name="32-buffer-copyout.phpt" />
+        <file role="test" name="33-bevent-event-cb-exception.phpt" />
+        <file role="test" name="33-bevent-read-cb-exception.phpt" />
+        <file role="test" name="33-bevent-write-cb-exception.phpt" />
+        <file role="test" name="34-event-callback-exit.phpt" />
+        <file role="test" name="35-dns-base-parse-resolv-conf-error.phpt" />
+        <file role="test" name="36-dns-base-construct-init-flags.phpt" />
+        <file role="test" name="49-issue.phpt" />
+        <file role="test" name="54-event-config-set-flags.phpt" />
+        <file role="test" name="61-issue.phpt" />
+        <file role="test" name="61-issue_php_pre_8_2_0.phpt" />
+        <file role="test" name="69-issue-event-cb-failure_php7.phpt" />
+        <file role="test" name="69-issue-event-cb-failure_php8.phpt" />
+        <file role="test" name="69-issue-event-cb-failure_php_pre_8_2_0.phpt" />
       </dir>
     </dir>
   </contents>
-  <!--}}}-->
+  <!-- }}} -->
   <dependencies>
     <required>
       <php>
@@ -239,18 +242,40 @@
   </dependencies>
   <providesextension>event</providesextension>
   <extsrcrelease>
-    <configureoption default="no" name="enable-event-debug" prompt="Enable internal debugging in Event"/>
-    <configureoption default="yes" name="enable-event-sockets" prompt="Enable sockets support in Event"/>
-    <configureoption default="/usr" name="with-event-libevent-dir" prompt="libevent installation prefix"/>
-    <configureoption default="no" name="with-event-pthreads" prompt="Include libevent's pthreads library and enable thread safety support in Event"/>
-    <configureoption default="yes" name="with-event-extra" prompt="Include libevent protocol-specific functionality support including HTTP, DNS, and RPC"/>
-    <configureoption default="yes" name="with-event-openssl" prompt="Include libevent OpenSSL support"/>
-    <configureoption default="no" name="with-event-ns" prompt="PHP Namespace for all Event classes"/>
-    <configureoption default="yes" name="with-openssl-dir" prompt="openssl installation prefix"/>
+    <configureoption default="no" name="enable-event-debug"
+      prompt="Enable internal debugging in Event" />
+    <configureoption default="yes" name="enable-event-sockets"
+      prompt="Enable sockets support in Event" />
+    <configureoption default="/usr" name="with-event-libevent-dir"
+      prompt="libevent installation prefix" />
+    <configureoption default="no" name="with-event-pthreads"
+      prompt="Include libevent's pthreads library and enable thread safety support in Event" />
+    <configureoption default="yes" name="with-event-extra"
+      prompt="Include libevent protocol-specific functionality support including HTTP, DNS, and RPC" />
+    <configureoption default="yes" name="with-event-openssl"
+      prompt="Include libevent OpenSSL support" />
+    <configureoption default="no" name="with-event-ns" prompt="PHP Namespace for all Event classes" />
+    <configureoption default="yes" name="with-openssl-dir" prompt="openssl installation prefix" />
   </extsrcrelease>
-  <!--{{{ changelog-->
+  <!-- {{{ changelog -->
   <changelog>
-    <!--{{{ 3.1.4 -->
+    <!-- {{{ 3.1.5 -->
+    <release>
+      <version>
+        <release>3.1.5</release>
+        <api>3.1.4</api>
+      </version>
+      <stability>
+        <release>stable</release>
+        <api>stable</api>
+      </stability>
+      <license uri="http://www.php.net/license">PHP</license>
+      <notes><![CDATA[
+    PIE/Packagist release.
+    ]]></notes>
+    </release>
+    <!-- }}} -->
+    <!-- {{{ 3.1.4 -->
     <release>
       <version>
         <release>3.1.4</release>
@@ -265,8 +290,8 @@
     Fixed tests failing with PHP 8.4.0-alpha1 (thanks to Remi Collet).
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 3.1.3 -->
+    <!-- }}} -->
+    <!-- {{{ 3.1.3 -->
     <release>
       <version>
         <release>3.1.3</release>
@@ -281,8 +306,8 @@
     EventDnsBase::__construct() now throws a TypeError if the type of the $initialize argument is anything other than int or bool.
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 3.1.2 -->
+    <!-- }}} -->
+    <!-- {{{ 3.1.2 -->
     <release>
       <version>
         <release>3.1.2</release>
@@ -297,8 +322,8 @@
     Fixed an issue in EventDnsBase::__construct() where it failed to accept the init flag set to true when using libevent version < 2.1.0.
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 3.1.1 -->
+    <!-- }}} -->
+    <!-- {{{ 3.1.1 -->
     <release>
       <version>
         <release>3.1.1</release>
@@ -313,8 +338,8 @@
     Fixed build in RHEL 7 and 8 (thanks to Remi Collet).
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 3.1.0 -->
+    <!-- }}} -->
+    <!-- {{{ 3.1.0 -->
     <release>
       <version>
         <release>3.1.0</release>
@@ -329,8 +354,8 @@
     Stable version based on 3.1.0RC1. Refer to release notes of 3.1.0RC1 for details.
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 3.1.0RC1-->
+    <!-- }}} -->
+    <!-- {{{ 3.1.0RC1-->
     <release>
       <version>
         <release>3.1.0RC1</release>
@@ -354,8 +379,8 @@
         - Fixed a bug where the EventBuffer::copyout method didn't populate the output variable properly in PHP >= 8.2 (thanks to Joseph Tseng).
         ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 3.0.8 -->
+    <!-- }}} -->
+    <!-- {{{ 3.0.8 -->
     <release>
       <version>
         <release>3.0.8</release>
@@ -370,8 +395,8 @@
     Set --with-openssl-dir configure option to "yes" by default.
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 3.0.7 -->
+    <!-- }}} -->
+    <!-- {{{ 3.0.7 -->
     <release>
       <version>
         <release>3.0.7</release>
@@ -387,8 +412,8 @@
     Fixed tests/27-event-util-create-socket_php8.phpt on macOS
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 3.0.7RC1 -->
+    <!-- }}} -->
+    <!-- {{{ 3.0.7RC1 -->
     <release>
       <version>
         <release>3.0.7RC1</release>
@@ -403,8 +428,8 @@
     Fixed #69: The event loop remained running when the user called exit() or an exception was thrown from the event callback. Now in these cases the loop will be stopped automatically.
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 3.0.6 -->
+    <!-- }}} -->
+    <!-- {{{ 3.0.6 -->
     <release>
       <version>
         <release>3.0.6</release>
@@ -420,8 +445,8 @@
     Fixed build with OpenSSL 3.0 (Thanks to Remi Collet).
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 3.0.5 -->
+    <!-- }}} -->
+    <!-- {{{ 3.0.5 -->
     <release>
       <version>
         <release>3.0.5</release>
@@ -436,8 +461,8 @@
     Fixed a test not working with PHP 8.1.0alpha1
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 3.0.4 -->
+    <!-- }}} -->
+    <!-- {{{ 3.0.4 -->
     <release>
       <version>
         <release>3.0.4</release>
@@ -452,8 +477,8 @@
     Internal changes: Created a non-fastcall wrapper for zend_objects_new().
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 3.0.3 -->
+    <!-- }}} -->
+    <!-- {{{ 3.0.3 -->
     <release>
       <version>
         <release>3.0.3</release>
@@ -468,8 +493,8 @@
     Fixed #66: Segmentation fault when calling EventConfig::avoidMethod because of incorrect arg info
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 3.0.2r1 -->
+    <!-- }}} -->
+    <!-- {{{ 3.0.2r1 -->
     <release>
       <version>
         <release>3.0.2r1</release>
@@ -484,8 +509,8 @@
     Stable version release.
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 3.0.2-beta -->
+    <!-- }}} -->
+    <!-- {{{ 3.0.2-beta -->
     <release>
       <version>
         <release>3.0.2</release>
@@ -500,8 +525,8 @@
     - Fixed #65: some methods had wrong argument/return type hints
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 3.0.1-beta -->
+    <!-- }}} -->
+    <!-- {{{ 3.0.1-beta -->
     <release>
       <version>
         <release>3.0.1</release>
@@ -516,8 +541,8 @@
     - Fixed #64: build failed to find arginfo.h when invoked via pecl install event-beta
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 3.0.0-beta -->
+    <!-- }}} -->
+    <!-- {{{ 3.0.0-beta -->
     <release>
       <version>
         <release>3.0.0</release>
@@ -534,8 +559,8 @@
     - Removed deprecated EventBufferEvent::sslFilter method.
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.5.7 -->
+    <!-- }}} -->
+    <!-- {{{ 2.5.7 -->
     <release>
       <version>
         <release>2.5.7</release>
@@ -550,8 +575,8 @@
     Issue #61: fixed segfault that appeared after throwing exception from event handler in PHP 7.4.9+
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.5.6 -->
+    <!-- }}} -->
+    <!-- {{{ 2.5.6 -->
     <release>
       <version>
         <release>2.5.6</release>
@@ -566,8 +591,8 @@
     Fixed a bug where numeric file descriptor was fetched from stdio stream incorrectly (issue #60)
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.5.5 -->
+    <!-- }}} -->
+    <!-- {{{ 2.5.5 -->
     <release>
       <version>
         <release>2.5.5</release>
@@ -582,8 +607,8 @@
     Issue #60: fixed a segfault which appeared when Event::add was called on malformed or freed Event object
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.5.4 -->
+    <!-- }}} -->
+    <!-- {{{ 2.5.4 -->
     <release>
       <version>
         <release>2.5.4</release>
@@ -599,8 +624,8 @@
     Fixed build error with disabled sockets support
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.5.3 -->
+    <!-- }}} -->
+    <!-- {{{ 2.5.3 -->
     <release>
       <version>
         <release>2.5.3</release>
@@ -616,8 +641,8 @@
     Fixed build warnings with PHP 7.4.0-alpha1: 'incompatible pointer type' warnings occurred in assignments to the write property handlers (thanks to Remi Collet).
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.5.2 -->
+    <!-- }}} -->
+    <!-- {{{ 2.5.2 -->
     <release>
       <version>
         <release>2.5.2</release>
@@ -632,8 +657,8 @@
     Fixed the value of EINPROGRESS constant in WIN32
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.5.1 -->
+    <!-- }}} -->
+    <!-- {{{ 2.5.1 -->
     <release>
       <version>
         <release>2.5.1</release>
@@ -648,8 +673,8 @@
     Fixed build warnings with PHP 7.3
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.5.0 -->
+    <!-- }}} -->
+    <!-- {{{ 2.5.0 -->
     <release>
       <version>
         <release>2.5.0</release>
@@ -664,8 +689,8 @@
     Issue #54: Added EventConfig::setFlags() method. (There was no way to set EVENT_BASE_FLAG_* flags.)
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.4.3-->
+    <!-- }}} -->
+    <!-- {{{ 2.4.3-->
     <release>
       <version>
         <release>2.4.3</release>
@@ -680,8 +705,8 @@
     Fixed issue #53: EventBase::__construct now throws EventException if the features specified via the EventConfig parameter are not supported on the current platform.
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.4.2 -->
+    <!-- }}} -->
+    <!-- {{{ 2.4.2 -->
     <release>
       <version>
         <release>2.4.2</release>
@@ -696,8 +721,8 @@
     Fixed: SSL verification callback failed when EventSslContext was used with either EventBufferEvent::createSslFilter or EventBufferEvent::sslFilter.
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.4.1 -->
+    <!-- }}} -->
+    <!-- {{{ 2.4.1 -->
     <release>
       <version>
         <release>2.4.1</release>
@@ -712,8 +737,8 @@
     Fixed issue #52: namespace issues when installing via pecl command in non-interactive mode.
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.4.0 -->
+    <!-- }}} -->
+    <!-- {{{ 2.4.0 -->
     <release>
       <version>
         <release>2.4.0</release>
@@ -728,8 +753,8 @@
     Replaced obsolete AC_TRY_COMPILE with AC_COMPILE_IFELSE in config.m4
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.4.0RC3-->
+    <!-- }}} -->
+    <!-- {{{ 2.4.0RC3 -->
     <release>
       <version>
         <release>2.4.0RC3</release>
@@ -744,8 +769,8 @@
     Fixed test error on RHEL 6/7 (thanks to Remi Collet).
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.4.0RC2 -->
+    <!-- }}} -->
+    <!-- {{{ 2.4.0RC2 -->
     <release>
       <version>
         <release>2.4.0RC2</release>
@@ -763,8 +788,8 @@
       reference.
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.4.0RC1 -->
+    <!-- }}} -->
+    <!-- {{{ 2.4.0RC1 -->
     <release>
       <version>
         <release>2.4.0RC1</release>
@@ -780,8 +805,8 @@
       Added --with-event-ns configuration option.
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.3.1 -->
+    <!-- }}} -->
+    <!-- {{{ 2.3.1 -->
     <release>
       <version>
         <release>2.3.1</release>
@@ -801,8 +826,8 @@
     Fixed issue #44: EventUtil class was final abstract
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.3.0 -->
+    <!-- }}} -->
+    <!-- {{{ 2.3.0 -->
     <release>
       <version>
         <release>2.3.0</release>
@@ -817,8 +842,8 @@
     Fixed build errors with LibreSSL
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.3.0RC1 -->
+    <!-- }}} -->
+    <!-- {{{ 2.3.0RC1 -->
     <release>
       <version>
         <release>2.3.0RC1</release>
@@ -838,8 +863,8 @@
     Fix: build failed with custom openssl setup (non-standard --with-openssl-dir)
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.2.1 -->
+    <!-- }}} -->
+    <!-- {{{ 2.2.1 -->
     <release>
       <version>
         <release>2.2.1</release>
@@ -854,8 +879,8 @@
     Fix: issue #31 where numeric file descriptor caused segmentation fault
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.2.0 -->
+    <!-- }}} -->
+    <!-- {{{ 2.2.0 -->
     <release>
       <version>
         <release>2.2.0</release>
@@ -873,8 +898,8 @@
     Fix: the class property names were wrapped in double quotes
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.1.0-->
+    <!-- }}} -->
+    <!-- {{{ 2.1.0 -->
     <release>
       <version>
         <release>2.1.0</release>
@@ -896,8 +921,8 @@
     Fix: PHP 7.1.0alpha1 build errors
     ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.0.4 -->
+    <!-- }}} -->
+    <!-- {{{ 2.0.4 -->
     <release>
       <version>
         <release>2.0.4</release>
@@ -912,8 +937,8 @@
     Issue #28: event-2.0.3 Windows build fails
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.0.3 -->
+    <!-- }}} -->
+    <!-- {{{ 2.0.3 -->
     <release>
       <version>
         <release>2.0.3</release>
@@ -928,8 +953,8 @@
     Issue #27: PHP > 7.0.6RC1 build fails
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.0.2 -->
+    <!-- }}} -->
+    <!-- {{{ 2.0.2 -->
     <release>
       <version>
         <release>2.0.2</release>
@@ -944,8 +969,8 @@
     PHP7: fixed random EDOM errors in EventUtil::setSocketOption
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.0.1 -->
+    <!-- }}} -->
+    <!-- {{{ 2.0.1 -->
     <release>
       <version>
         <release>2.0.1</release>
@@ -960,8 +985,8 @@
     PHP7: Protected user callbacks from destruction within libevent callbacks
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.0.0 -->
+    <!-- }}} -->
+    <!-- {{{ 2.0.0 -->
     <release>
       <version>
         <release>2.0.0</release>
@@ -982,8 +1007,8 @@
     Fixed PHP5/PHP7 memory issue: string returned by EventBuffer::pullup() was not zero-terminated
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.0.0RC2 -->
+    <!-- }}} -->
+    <!-- {{{ 2.0.0RC2 -->
     <release>
       <version>
         <release>2.0.0RC2</release>
@@ -998,8 +1023,8 @@
     Fixed Mac OS X build errors
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 2.0.RC1 -->
+    <!-- }}} -->
+    <!-- {{{ 2.0.RC1 -->
     <release>
       <version>
         <release>2.0.0RC1</release>
@@ -1022,8 +1047,8 @@
       - removed the first(EventBase) argument of EventBufferEvent::sslFilter method, since the internal EventBase object must match EventBase object within the underlying EventBufferEvent
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.11.3 -->
+    <!-- }}} -->
+    <!-- {{{ 1.11.3 -->
     <release>
       <version>
         <release>1.11.3</release>
@@ -1038,8 +1063,8 @@
     Issue #20: SSL_GET_PREV_SESSION:session id context uninitialized
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.11.2 -->
+    <!-- }}} -->
+    <!-- {{{ 1.11.2 -->
     <release>
       <version>
         <release>1.11.2</release>
@@ -1056,8 +1081,8 @@
     if the method is called from a userspace callback.
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.11.1 -->
+    <!-- }}} -->
+    <!-- {{{ 1.11.1 -->
     <release>
       <version>
         <release>1.11.1</release>
@@ -1072,8 +1097,8 @@
     Fixed build with old openssl (RHEL-5) (thanks to Remi Collet)
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.11.0 -->
+    <!-- }}} -->
+    <!-- {{{ 1.11.0 -->
     <release>
       <version>
         <release>1.11.0</release>
@@ -1110,8 +1135,8 @@
     socket client(STREAM_CLIENT_PERSISTENT)
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.10.4 -->
+    <!-- }}} -->
+    <!-- {{{ 1.10.4 -->
     <release>
       <version>
         <release>1.10.4</release>
@@ -1127,8 +1152,8 @@
     Now the event loop will break and re-throw the exception.
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.10.3 -->
+    <!-- }}} -->
+    <!-- {{{ 1.10.3 -->
     <release>
       <version>
         <release>1.10.3</release>
@@ -1143,8 +1168,8 @@
     Issue #8: pecl install failed due to the REST API issues with Unicode
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.10.2 -->
+    <!-- }}} -->
+    <!-- {{{ 1.10.2 -->
     <release>
       <version>
         <release>1.10.2</release>
@@ -1161,8 +1186,8 @@
     Fix: refcounter in EventHttp's default callback (J. Fekete)
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.10.1 -->
+    <!-- }}} -->
+    <!-- {{{ 1.10.1 -->
     <release>
       <version>
         <release>1.10.1</release>
@@ -1177,8 +1202,8 @@
     Deleted a troublesome phpt test
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.10.0 -->
+    <!-- }}} -->
+    <!-- {{{ 1.10.0 -->
     <release>
       <version>
         <release>1.10.0</release>
@@ -1195,8 +1220,8 @@
         Add: EventHttp::__construct() now accepts EventSslContext object as argument.
         ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.9.1 -->
+    <!-- }}} -->
+    <!-- {{{ 1.9.1 -->
     <release>
       <version>
         <release>1.9.1</release>
@@ -1212,8 +1237,8 @@
     issue #7: PHP_EVENT_REQUIRE_BASE_BY_REF() didn't work in 5.6.0-dev (fixed by Remi Collet)
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.9.0 -->
+    <!-- }}} -->
+    <!-- {{{ 1.9.0 -->
     <release>
       <version>
         <release>1.9.0</release>
@@ -1236,8 +1261,8 @@
    EventBufferEvent::createPair method made static.
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.8.1 -->
+    <!-- }}} -->
+    <!-- {{{ 1.8.1 -->
     <release>
       <version>
         <release>1.8.1</release>
@@ -1252,8 +1277,8 @@
   Fix: Bug #65847 Issue with old libevent2 where evhttp_connection_get_bufferevent function was not available with libevent version < 2.0.17 (thanks to Remi <remi@php.net>)
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.8.0 -->
+    <!-- }}} -->
+    <!-- {{{ 1.8.0 -->
     <release>
       <version>
         <release>1.8.0</release>
@@ -1269,8 +1294,8 @@
   Add: EventHttpConnection::setCloseCallback method
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.7.8 -->
+    <!-- }}} -->
+    <!-- {{{ 1.7.8 -->
     <release>
       <version>
         <release>1.7.8</release>
@@ -1286,8 +1311,8 @@
   Introduced negative dependencies: libevent extension, windows OS
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.7.7 -->
+    <!-- }}} -->
+    <!-- {{{ 1.7.7 -->
     <release>
       <version>
         <release>1.7.7</release>
@@ -1303,8 +1328,8 @@
   (a hack for distros installing sockets separately)
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.7.6 -->
+    <!-- }}} -->
+    <!-- {{{ 1.7.6 -->
     <release>
       <version>
         <release>1.7.6</release>
@@ -1321,8 +1346,8 @@
   option
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.7.5 -->
+    <!-- }}} -->
+    <!-- {{{ 1.7.5 -->
     <release>
       <version>
         <release>1.7.5</release>
@@ -1337,8 +1362,8 @@
   Fix: build error with custom libevent installation prefixes like /lib(John Wamer)
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.7.4 -->
+    <!-- }}} -->
+    <!-- {{{ 1.7.4 -->
     <release>
       <version>
         <release>1.7.4</release>
@@ -1353,8 +1378,8 @@
   Fix: Segmentation fault caused by direct access to the zend object properties' hash table
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.7.3 -->
+    <!-- }}} -->
+    <!-- {{{ 1.7.3 -->
     <release>
       <version>
         <release>1.7.3</release>
@@ -1370,8 +1395,8 @@
   Fix: absence of get_gc property handler caused segfaults with gc_collect_cycles()
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.7.2 -->
+    <!-- }}} -->
+    <!-- {{{ 1.7.2 -->
     <release>
       <version>
         <release>1.7.2</release>
@@ -1389,8 +1414,8 @@
   Fix: evthread_use_pthreads() call skept due to a "macro magic"(PHP_EVENT_ASSERT)
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.7.1 -->
+    <!-- }}} -->
+    <!-- {{{ 1.7.1 -->
     <release>
       <version>
         <release>1.7.1</release>
@@ -1407,8 +1432,8 @@
   Fix: evnt object dtors sometimes didn't free the 'data' member until the script shutdown phase
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.7.0 -->
+    <!-- }}} -->
+    <!-- {{{ 1.7.0 -->
     <release>
       <version>
         <release>1.7.0</release>
@@ -1427,8 +1452,8 @@
     Add: EventUtil::getSocketFD() method
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.6.2  -->
+    <!-- }}} -->
+    <!-- {{{ 1.6.2  -->
     <release>
       <version>
         <release>1.6.2</release>
@@ -1445,8 +1470,8 @@
   Fix: bug #64679 where we had buffer overflow caused by struct sockaddr_storage * pointer
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.6.1 -->
+    <!-- }}} -->
+    <!-- {{{ 1.6.1 -->
     <release>
       <version>
         <release>1.6.1</release>
@@ -1463,8 +1488,8 @@
   method calls
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.6.0 -->
+    <!-- }}} -->
+    <!-- {{{ 1.6.0 -->
     <release>
       <version>
         <release>1.6.0</release>
@@ -1492,8 +1517,8 @@
   EventBuffer::read now takes single argument 'size' and returns the string read
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.5.1 -->
+    <!-- }}} -->
+    <!-- {{{ 1.5.1 -->
     <release>
       <version>
         <release>1.5.1</release>
@@ -1510,8 +1535,8 @@
       Change: EventBuffer class is not final any more
       ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.5.0 -->
+    <!-- }}} -->
+    <!-- {{{ 1.5.0 -->
     <release>
       <version>
         <release>1.5.0</release>
@@ -1532,8 +1557,8 @@
         Add: support of UNIX domain sockets in EventListener::__construct, EventBufferEvent::connect methods
         ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.4.0-beta  -->
+    <!-- }}} -->
+    <!-- {{{ 1.4.0-beta  -->
     <release>
       <version>
         <release>1.4.0</release>
@@ -1559,8 +1584,8 @@ Fix: classes/buffer_event.c: possible memory access violation in bufferevent cal
 Fix: turn off buggy libevent thread lock debugging when built with --enable-event-debug
 ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.3.0-beta-->
+    <!-- }}} -->
+    <!-- {{{ 1.3.0-beta -->
     <release>
       <version>
         <release>1.3.0</release>
@@ -1583,8 +1608,8 @@ Add: --with-event-pthreads configure option
 Fix: EventBase::reInit method's arginfo
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.2.6-beta -->
+    <!-- }}} -->
+    <!-- {{{ 1.2.6-beta -->
     <release>
       <version>
         <release>1.2.6</release>
@@ -1605,8 +1630,8 @@ Fix: EventBase::reInit method's arginfo
       Add: EventBase::resume method
       ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.2.5-alpha -->
+    <!-- }}} -->
+    <!-- {{{ 1.2.5-alpha -->
     <version>
       <release>1.2.5</release>
       <api>1.2.1</api>
@@ -1623,8 +1648,8 @@ Fix: EventBase::reInit method's arginfo
   Change: instead of stream pass numeric file descriptor to EventListener's accept-connection callback
   Add: callbacks and the callback arg are now passed to EventBufferEvent::__construct as optional arguments
   ]]></notes>
-    <!--}}}-->
-    <!--{{{ 1.2.4-alpha -->
+    <!-- }}} -->
+    <!-- {{{ 1.2.4-alpha -->
     <version>
       <release>1.2.4</release>
       <api>1.2.1</api>
@@ -1638,8 +1663,8 @@ Fix: EventBase::reInit method's arginfo
   Fix: deleted redundant len argument of EventBuffer::readLine
   Fix: EventBuffer::readLine returned non-dup'd string. Caused bugs with pointers.
   ]]></notes>
-    <!--}}}-->
-    <!--{{{ 1.2.3-alpha -->
+    <!-- }}} -->
+    <!-- {{{ 1.2.3-alpha -->
     <release>
       <version>
         <release>1.2.3</release>
@@ -1655,8 +1680,8 @@ Fix: EventBase::reInit method's arginfo
   Fix: undefined symbol SSLv2_*_method when SL_OP_NO_SSLv2 defined
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.2.0-alpha-->
+    <!-- }}} -->
+    <!-- {{{ 1.2.0-alpha -->
     <release>
       <version>
         <release>1.2.0</release>
@@ -1678,8 +1703,8 @@ Fix: EventBase::reInit method's arginfo
   Add: EventBuffer::pullup method
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.1.1-devel -->
+    <!-- }}} -->
+    <!-- {{{ 1.1.1-devel -->
     <release>
       <version>
         <release>1.1.1</release>
@@ -1694,8 +1719,8 @@ Fix: EventBase::reInit method's arginfo
   Fix: the installer failed to determine location of src/common.h
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.1.0-devel -->
+    <!-- }}} -->
+    <!-- {{{ 1.1.0-devel -->
     <release>
       <version>
         <release>1.1.0</release>
@@ -1710,8 +1735,8 @@ Fix: EventBase::reInit method's arginfo
   Procedural API converted to OOP API
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.0.1-devel -->
+    <!-- }}} -->
+    <!-- {{{ 1.0.1-devel -->
     <release>
       <version>
         <release>1.0.1</release>
@@ -1728,8 +1753,8 @@ Fix: EventBase::reInit method's arginfo
     Fix: memory violation while parsing event_config_set_max_dispatch_interval parameters
   ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ 1.0.0-devel -->
+    <!-- }}} -->
+    <!-- {{{ 1.0.0-devel -->
     <release>
       <date>2013-01-19</date>
       <version>
@@ -1745,8 +1770,8 @@ Fix: EventBase::reInit method's arginfo
       Libevent 2+ support added
         ]]></notes>
     </release>
-    <!--}}}-->
-    <!--{{{ Obsolete releases-->
+    <!-- }}} -->
+    <!-- {{{ Obsolete releases -->
     <release>
       <date>2004-12-16</date>
       <lead>
@@ -1783,11 +1808,11 @@ Fix: EventBase::reInit method's arginfo
       On Windows, currently only sockets can participate in the IO notification engine.
       ]]></notes>
       <deps>
-        <dep type="php" rel="ge" version="4.3.0"/>
+        <dep type="php" rel="ge" version="4.3.0" />
       </deps>
     </release>
-    <!--}}}-->
+    <!-- }}} -->
   </changelog>
-  <!--}}}-->
+  <!-- }}} -->
 </package>
 <!-- vim: set et sts=2 ts=2 sw=2 fdm=marker: -->
