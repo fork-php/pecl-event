@@ -130,7 +130,7 @@ static void _php_event_listener_cb(struct evconnlistener *listener, evutil_socke
 	/* Protect against accidental destruction of the func name before zend_call_function() finished */
 	ZVAL_COPY(&zcallable, &l->cb.func_name);
 
-	if (!zend_is_callable(&zcallable,  0, &func_name)) {
+	if (!zend_is_callable_ex(&zcallable, NULL, 0, &func_name, NULL, NULL)) {
 		zend_string_release(func_name);
 		return;
 	}
@@ -222,7 +222,7 @@ static void listener_error_cb(struct evconnlistener *listener, void *ctx) {
 	/* Protect against accidental destruction of the func name before zend_call_function() finished */
 	ZVAL_COPY(&zcallable, &l->cb_err.func_name);
 
-	if (!zend_is_callable(&zcallable, 0, &func_name)) {
+	if (!zend_is_callable_ex(&zcallable, NULL, 0, &func_name, NULL, NULL)) {
 		zend_string_release(func_name);
 		return;
 	}

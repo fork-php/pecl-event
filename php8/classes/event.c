@@ -87,7 +87,7 @@ static void timer_cb(evutil_socket_t fd, short what, void *arg)
 	/* Protect against accidental destruction of the func name before zend_call_function() finished */
 	ZVAL_COPY(&zcallable, &e->cb.func_name);
 
-	if (!zend_is_callable(&zcallable, 0, &func_name)) {
+	if (!zend_is_callable_ex(&zcallable, NULL, 0, &func_name, NULL, NULL)) {
 		zend_string_release(func_name);
 		return;
 	}
@@ -127,7 +127,7 @@ static void event_cb(evutil_socket_t fd, short what, void *arg)
 	/* Protect against accidental destruction of the func name before zend_call_function() finished */
 	ZVAL_COPY(&zcallable, &e->cb.func_name);
 
-	if (!zend_is_callable(&zcallable, 0, &func_name)) {
+	if (!zend_is_callable_ex(&zcallable, NULL, 0, &func_name, NULL, NULL)) {
 		zend_string_release(func_name);
 		return;
 	}
@@ -181,7 +181,7 @@ static void signal_cb(evutil_socket_t signum, short what, void *arg)
 	/* Protect against accidental destruction of the func name before zend_call_function() finished */
 	ZVAL_COPY(&zcallable, &e->cb.func_name);
 
-	if (!zend_is_callable(&zcallable, 0, &func_name)) {
+	if (!zend_is_callable_ex(&zcallable, NULL, 0, &func_name, NULL, NULL)) {
 		zend_string_release(func_name);
 		return;
 	}
