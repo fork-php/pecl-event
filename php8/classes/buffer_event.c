@@ -81,7 +81,7 @@ static zend_always_inline void bevent_rw_cb(struct bufferevent *bevent, php_even
 	/* Protect against accidental destruction of the func name before zend_call_function() finished */
 	ZVAL_COPY(&zcallable, &pcb->func_name);
 
-	if (!zend_is_callable(&zcallable, 0, &func_name)) {
+	if (!zend_is_callable_ex(&zcallable, NULL, 0, &func_name, NULL, NULL)) {
 		zend_string_release(func_name);
 		return;
 	}
@@ -157,7 +157,7 @@ static void bevent_event_cb(struct bufferevent *bevent, short events, void *ptr)
 	/* Protect against accidental destruction of the func name before zend_call_function() finished */
 	ZVAL_COPY(&zcallable, &bev->cb_event.func_name);
 
-	if (!zend_is_callable(&zcallable, 0, &func_name)) {
+	if (!zend_is_callable_ex(&zcallable, NULL, 0, &func_name, NULL, NULL)) {
 		zend_string_release(func_name);
 		return;
 	}

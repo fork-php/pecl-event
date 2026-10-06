@@ -98,7 +98,7 @@ static void _http_callback(struct evhttp_request *req, void *arg)
 	/* Protect against accidental destruction of the func name before zend_call_function() finished */
 	ZVAL_COPY(&zcallable, &cb->cb.func_name);
 
-	if (!zend_is_callable(&zcallable, 0, &func_name)) {
+	if (!zend_is_callable_ex(&zcallable, NULL, 0, &func_name, NULL, NULL)) {
 		zend_string_release(func_name);
 		return;
 	}
@@ -161,7 +161,7 @@ static void _http_default_callback(struct evhttp_request *req, void *arg)
 	/* Protect against accidental destruction of the func name before zend_call_function() finished */
 	ZVAL_COPY(&zcallable, &http->cb.func_name);
 
-	if (!zend_is_callable(&zcallable, 0, &func_name)) {
+	if (!zend_is_callable_ex(&zcallable, NULL, 0, &func_name, NULL, NULL)) {
 		zend_string_release(func_name);
 		return;
 	}

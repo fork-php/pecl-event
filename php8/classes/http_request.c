@@ -75,7 +75,7 @@ static void _req_handler(struct evhttp_request *req, void *arg)
 	/* Protect against accidental destruction of the func name before zend_call_function() finished */
 	ZVAL_COPY(&zcallable, &http_req->cb.func_name);
 
-	if (!zend_is_callable(&zcallable, 0, &func_name)) {
+	if (!zend_is_callable_ex(&zcallable, NULL, 0, &func_name, NULL, NULL)) {
 		zend_string_release(func_name);
 		return;
 	}
