@@ -6,6 +6,10 @@
     "require": {
         "php": ">= 5.4.0"
     },
+    "support": {
+        "issues": "https://github.com/rosmanov/pecl-event/issues",
+        "source": "https://github.com/rosmanov/pecl-event"
+    },
     "php-ext": {
         "extension-name": "event",
         "configure-options": [
