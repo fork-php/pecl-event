@@ -25,4 +25,4 @@ jobs:
             "https://x-token-auth:${BITBUCKET_TOKEN}@bitbucket.org/osmanov/pecl-event.git"
 
           git push bitbucket --all
-          git push bitbucket --tags
+          git push bitbucket --tags --force
