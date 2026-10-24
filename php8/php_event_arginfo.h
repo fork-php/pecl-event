@@ -400,7 +400,7 @@ ZEND_END_ARG_INFO()
 #endif
 
 #if HAVE_EVENT_EXTRA_LIB
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_EventHttpRequest_getHost, 0, 0, IS_STRING, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_EventHttpRequest_getHost, 0, 0, IS_STRING, 1)
 ZEND_END_ARG_INFO()
 #endif
 

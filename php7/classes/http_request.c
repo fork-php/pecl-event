@@ -239,6 +239,7 @@ PHP_METHOD(EventHttpRequest, getCommand)
 PHP_METHOD(EventHttpRequest, getHost)
 {
 	php_event_http_req_t *http_req;
+	const char           *str;
 
 	if (zend_parse_parameters_none() == FAILURE) {
 		return;
@@ -248,7 +249,12 @@ PHP_METHOD(EventHttpRequest, getHost)
 
 	_check_http_req_ptr(http_req);
 
-	RETVAL_STRING(evhttp_request_get_host(http_req->ptr));
+	str = evhttp_request_get_host(http_req->ptr);
+	if (str == NULL) {
+		RETURN_NULL();
+	}
+
+	RETVAL_STRING(str);
 }
 /* }}} */
 
@@ -257,6 +263,7 @@ PHP_METHOD(EventHttpRequest, getHost)
 PHP_METHOD(EventHttpRequest, getUri)
 {
 	php_event_http_req_t *http_req;
+	const char           *str;
 
 	if (zend_parse_parameters_none() == FAILURE) {
 		return;
@@ -266,7 +273,12 @@ PHP_METHOD(EventHttpRequest, getUri)
 
 	_check_http_req_ptr(http_req);
 
-	RETVAL_STRING(evhttp_request_get_uri(http_req->ptr));
+	str = evhttp_request_get_uri(http_req->ptr);
+	if (str == NULL) {
+		RETURN_NULL();
+	}
+
+	RETVAL_STRING(str);
 }
 /* }}} */
 
