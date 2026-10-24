@@ -201,9 +201,17 @@ PHP_EVENT_METHOD(EventBuffer, read)
 		return;
 	}
 
+	if (max_bytes < 0) {
+		zend_argument_value_error(1, "must be greater than or equal to 0");
+		RETURN_THROWS();
+	}
+
 	b = Z_EVENT_BUFFER_OBJ_P(zbuf);
 
-	data = emalloc(sizeof(char) * max_bytes + 1);
+	/* No need to allocate more than the buffer holds */
+	max_bytes = MIN((size_t)max_bytes, evbuffer_get_length(b->buf));
+
+	data = emalloc(max_bytes + 1);
 
 	ret = evbuffer_remove(b->buf, data, max_bytes);
 	if (ret > 0) {
@@ -389,9 +397,17 @@ PHP_EVENT_METHOD(EventBuffer, copyout)
 		return;
 	}
 
+	if (max_bytes < 0) {
+		zend_argument_value_error(2, "must be greater than or equal to 0");
+		RETURN_THROWS();
+	}
+
 	b = Z_EVENT_BUFFER_OBJ_P(zbuf);
 
-	data = emalloc(sizeof(char) * max_bytes + 1);
+	/* No need to allocate more than the buffer holds */
+	max_bytes = MIN((size_t)max_bytes, evbuffer_get_length(b->buf));
+
+	data = emalloc(max_bytes + 1);
 
 	ret = evbuffer_copyout(b->buf, data, max_bytes);
 
@@ -572,10 +588,9 @@ PHP_EVENT_METHOD(EventBuffer, pullup)
 		RETURN_NULL();
 	}
 
-	length = evbuffer_get_length(b->buf);
-
-	/* evbuffer_pullup() doesn't add terminating zero */
-	mem[length] = '\0';
+	/* Only the first size bytes (the whole buffer, if size is negative) are
+	 * guaranteed to be contiguous. RETVAL_STRINGL copies and terminates them. */
+	length = (size < 0 ? evbuffer_get_length(b->buf) : (size_t)size);
 
 	RETVAL_STRINGL((const char *)mem, length);
 }
