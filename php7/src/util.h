@@ -209,6 +209,23 @@ static zend_always_inline HashTable * find_prop_handler(HashTable *classes, zend
 /* Obsolete */
 #define PHP_EVENT_REQUIRE_BASE_BY_REF(zbase)
 
+/* Guards against use of a native object released by EventBase::free() / Event::free() */
+#define PHP_EVENT_CHECK_BASE_PTR(b)                                                     \
+	do {                                                                                \
+		if (UNEXPECTED(!(b)->base)) {                                                   \
+			zend_throw_error(NULL, "EventBase object is malformed or freed");           \
+			return;                                                                     \
+		}                                                                               \
+	} while (0)
+
+#define PHP_EVENT_CHECK_EVENT_PTR(e)                                                    \
+	do {                                                                                \
+		if (UNEXPECTED(!(e)->event)) {                                                  \
+			zend_throw_error(NULL, "Event object is malformed or freed");               \
+			return;                                                                     \
+		}                                                                               \
+	} while (0)
+
 #endif /* PHP_EVENT_UTIL_H */
 /*
  * Local variables:

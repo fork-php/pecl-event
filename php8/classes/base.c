@@ -94,6 +94,7 @@ PHP_EVENT_METHOD(EventBase, getMethod)
 	}
 
 	b = Z_EVENT_BASE_OBJ_P(zbase);
+	PHP_EVENT_CHECK_BASE_PTR(b);
 
 	RETURN_STRING((char *)event_base_get_method(b->base));
 }
@@ -111,6 +112,7 @@ PHP_EVENT_METHOD(EventBase, getFeatures)
 	}
 
 	b = Z_EVENT_BASE_OBJ_P(zbase);
+	PHP_EVENT_CHECK_BASE_PTR(b);
 
 	RETVAL_LONG(event_base_get_features(b->base));
 }
@@ -130,6 +132,7 @@ PHP_EVENT_METHOD(EventBase, priorityInit)
 	}
 
 	b = Z_EVENT_BASE_OBJ_P(zbase);
+	PHP_EVENT_CHECK_BASE_PTR(b);
 
 	if (event_base_priority_init(b->base, n_priorities)) {
 		RETURN_FALSE;
@@ -152,6 +155,7 @@ PHP_EVENT_METHOD(EventBase, loop)
 	}
 
 	b = Z_EVENT_BASE_OBJ_P(zbase);
+	PHP_EVENT_CHECK_BASE_PTR(b);
 
 	/* Call event_base_dispatch when flags omitted. */
 	if (flags == -1) {
@@ -181,6 +185,7 @@ PHP_EVENT_METHOD(EventBase, dispatch)
 	}
 
 	b = Z_EVENT_BASE_OBJ_P(zbase);
+	PHP_EVENT_CHECK_BASE_PTR(b);
 
 	if (event_base_dispatch(b->base) == -1) {
 		RETURN_FALSE;
@@ -205,6 +210,7 @@ PHP_EVENT_METHOD(EventBase, exit)
 	}
 
 	b = Z_EVENT_BASE_OBJ_P(zbase);
+	PHP_EVENT_CHECK_BASE_PTR(b);
 
 	if (timeout == -1) {
 		res = event_base_loopexit(b->base, NULL);
@@ -234,6 +240,7 @@ PHP_EVENT_METHOD(EventBase, stop)
 	}
 
 	b = Z_EVENT_BASE_OBJ_P(zbase);
+	PHP_EVENT_CHECK_BASE_PTR(b);
 
 	if (event_base_loopbreak(b->base)) {
 		RETURN_FALSE;
@@ -257,6 +264,7 @@ PHP_EVENT_METHOD(EventBase, set)
 	}
 
 	e = Z_EVENT_EVENT_OBJ_P(zevent);
+	PHP_EVENT_CHECK_EVENT_PTR(e);
 
 	if (php_event_is_pending(e->event)) {
 		php_error_docref(NULL, E_WARNING, "Can't modify pending event");
@@ -264,6 +272,7 @@ PHP_EVENT_METHOD(EventBase, set)
 	}
 
 	b = Z_EVENT_BASE_OBJ_P(zbase);
+	PHP_EVENT_CHECK_BASE_PTR(b);
 
 	if (event_base_set(b->base, e->event)) {
 		RETURN_FALSE;
@@ -285,6 +294,7 @@ PHP_EVENT_METHOD(EventBase, gotStop)
 	}
 
 	b = Z_EVENT_BASE_OBJ_P(zbase);
+	PHP_EVENT_CHECK_BASE_PTR(b);
 
 	if (event_base_got_break(b->base)) {
 		RETURN_TRUE;
@@ -305,6 +315,7 @@ PHP_EVENT_METHOD(EventBase, gotExit)
 	}
 
 	b = Z_EVENT_BASE_OBJ_P(zbase);
+	PHP_EVENT_CHECK_BASE_PTR(b);
 
 	if (event_base_got_exit(b->base)) {
 		RETURN_TRUE;
@@ -330,6 +341,7 @@ PHP_EVENT_METHOD(EventBase, getTimeOfDayCached)
 	}
 
 	b = Z_EVENT_BASE_OBJ_P(zbase);
+	PHP_EVENT_CHECK_BASE_PTR(b);
 
 	if (event_base_gettimeofday_cached(b->base, &tv)) {
 		RETURN_NULL();
@@ -352,6 +364,7 @@ PHP_EVENT_METHOD(EventBase, updateCacheTime)
 	}
 
 	b = Z_EVENT_BASE_OBJ_P(zbase);
+	PHP_EVENT_CHECK_BASE_PTR(b);
 
 	if (event_base_update_cache_time(b->base)) {
 		RETURN_FALSE;
@@ -374,6 +387,7 @@ PHP_EVENT_METHOD(EventBase, reInit)
 	}
 
 	b = Z_EVENT_BASE_OBJ_P(zbase);
+	PHP_EVENT_CHECK_BASE_PTR(b);
 
 	if (event_reinit(b->base)) {
 		RETURN_FALSE;
@@ -397,6 +411,7 @@ PHP_EVENT_METHOD(EventBase, resume)
 	}
 
 	b = Z_EVENT_BASE_OBJ_P(zbase);
+	PHP_EVENT_CHECK_BASE_PTR(b);
 
 	if (event_base_loopcontinue(b->base)) {
 		RETURN_FALSE;

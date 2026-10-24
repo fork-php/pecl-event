@@ -255,6 +255,7 @@ PHP_EVENT_METHOD(Event, __construct)
 	}
 
 	b = Z_EVENT_BASE_OBJ_P(zbase);
+	PHP_EVENT_CHECK_BASE_PTR(b);
 	PHP_EVENT_ASSERT(b);
 
 	/* TODO: check if a signum is bound to different event bases */
@@ -352,6 +353,7 @@ PHP_EVENT_METHOD(Event, set)
 	}
 
 	e = Z_EVENT_EVENT_OBJ_P(getThis());
+	PHP_EVENT_CHECK_EVENT_PTR(e);
 
 	if (php_event_is_pending(e->event)) {
 		php_error_docref(NULL, E_WARNING, "Can't modify pending event");
@@ -360,6 +362,7 @@ PHP_EVENT_METHOD(Event, set)
 
 	b = Z_EVENT_BASE_OBJ_P(zbase);
 	PHP_EVENT_ASSERT(b);
+	PHP_EVENT_CHECK_BASE_PTR(b);
 
 	/* TODO: check if a signum bound to different event bases */
 
@@ -496,6 +499,7 @@ PHP_EVENT_METHOD(Event, removeTimer)
 	}
 
 	e = Z_EVENT_EVENT_OBJ_P(zevent);
+	PHP_EVENT_CHECK_EVENT_PTR(e);
 
 	if (event_remove_timer(e->event)) {
 		php_error_docref(NULL, E_WARNING, "Failed deletting event");
@@ -520,6 +524,7 @@ PHP_EVENT_METHOD(Event, setPriority)
 	}
 
 	e = Z_EVENT_EVENT_OBJ_P(zevent);
+	PHP_EVENT_CHECK_EVENT_PTR(e);
 
 	if (event_priority_set(e->event, priority)) {
 		php_error_docref(NULL, E_WARNING, "Unable to set event priority: %ld", priority);
@@ -543,6 +548,7 @@ PHP_EVENT_METHOD(Event, pending)
 	}
 
 	e = Z_EVENT_EVENT_OBJ_P(zevent);
+	PHP_EVENT_CHECK_EVENT_PTR(e);
 
 	if (event_pending(e->event, flags, NULL)) {
 		RETURN_TRUE;
@@ -571,6 +577,7 @@ PHP_EVENT_METHOD(Event, timer)
 	PHP_EVENT_REQUIRE_BASE_BY_REF(zbase);
 
 	b = Z_EVENT_BASE_OBJ_P(zbase);
+	PHP_EVENT_CHECK_BASE_PTR(b);
 	PHP_EVENT_ASSERT(zbase);
 
 	PHP_EVENT_INIT_CLASS_OBJECT(return_value, php_event_ce);
@@ -613,6 +620,7 @@ PHP_EVENT_METHOD(Event, setTimer)
 	PHP_EVENT_REQUIRE_BASE_BY_REF(zbase);
 
 	e = Z_EVENT_EVENT_OBJ_P(getThis());
+	PHP_EVENT_CHECK_EVENT_PTR(e);
 	PHP_EVENT_ASSERT(e);
 
 	if (evtimer_pending(e->event, NULL)) {
@@ -622,6 +630,7 @@ PHP_EVENT_METHOD(Event, setTimer)
 	}
 
 	b = Z_EVENT_BASE_OBJ_P(zbase);
+	PHP_EVENT_CHECK_BASE_PTR(b);
 
 	php_event_replace_callback(&e->cb, &fci.function_name);
 	if (zarg) {
@@ -665,6 +674,7 @@ PHP_EVENT_METHOD(Event, signal)
 	}
 
 	b = Z_EVENT_BASE_OBJ_P(zbase);
+	PHP_EVENT_CHECK_BASE_PTR(b);
 
 	PHP_EVENT_INIT_CLASS_OBJECT(return_value, php_event_ce);
 	e = Z_EVENT_EVENT_OBJ_P(return_value);
