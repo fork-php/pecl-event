@@ -27,6 +27,7 @@ distributions:
 - OpenSUSE: `zypper in libevent libevent-devel`
 - RHEL/Fedora: `dnf install libevent libevent-devel`
 - Gentoo: `USE=ssl emerge dev-libs/libevent`
+- macOS (Homebrew): `brew install libevent openssl`
 
 Libevent can also be compiled from source, and the source code is available its
 [homepage](http://libevent.org/).
@@ -55,6 +56,7 @@ phpize
 ./configure --with-event-core --with-event-extra
 make
 ```
+
 (Run `./configure --help` for more options.)
 
 Optionally, run tests:
@@ -79,6 +81,17 @@ can configure Event with the `--disable-event-sockets` option. Alternatively,
 choose 'n' (No) when the PEAR installer asks whether 'sockets' support is
 required.
 
+#### macOS (Homebrew)
+
+`./configure` finds libevent using `pkg-config`, so the Homebrew prefix (e.g., `opt/homebrew`)
+needs no extra options. To build against another libevent version, pass `--with-event-libevent-dir=DIR`.
+
+Keep libevent and PHP on the same OpenSSL. Homebrew's `libevent_openssl` and the PHP
+binary each link their own OpenSSL, and mixing major versions (e.g., libevent built against `openssl@3`
+and PHP against `openssl@4`) crashes the SSL classes with a segfault. `./configure` stops with an error
+when it detects this. To fix it, upgrade libevent with `brew upgrade libevent php`.
+
+If you don't need SSL, build without it: `--without-event-opensssl`.
 
 FINALLY
 -------
