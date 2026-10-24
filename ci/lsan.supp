@@ -1,0 +1,7 @@
+# LeakSanitizer suppressions for the ASan CI job (see ci/test.sh).
+#
+# Known third-party leaks:
+#
+# libevent's bufferevent_openssl allocates a global BIO_METHOD with BIO_meth_new() and
+# never frees it (test 21-bevent-sslfilter).
+leak:BIO_meth_new

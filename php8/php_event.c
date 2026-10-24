@@ -374,23 +374,20 @@ static void php_event_http_free_obj(zend_object *object)/*{{{*/
 
 static void php_event_http_req_free_obj(zend_object *object)/*{{{*/
 {
-#if 0
 	php_event_http_req_t *http_req = Z_EVENT_X_FETCH_OBJ(http_req, object);
 	PHP_EVENT_ASSERT(http_req);
-#endif
 
-#if 0
 	/*
 	Libevent cleans up http_req->ptr despite the ownership of the pointer
-	(evhttp_request_own()). So we'll get SEGFAULT here if we call
-	evhttp_request_free().
+	(evhttp_request_own()) once the request has been handed over to it: to a
+	connection by EventHttpConnection::makeRequest() or to a handler. Such
+	requests are marked `internal`. Free only the ones that never were,
+	otherwise they leak.
 	*/
-
 	if (!http_req->internal && http_req->ptr) {
 		evhttp_request_free(http_req->ptr);
 		http_req->ptr = NULL;
 	}
-#endif
 
 	zend_object_std_dtor(object);
 }/*}}}*/

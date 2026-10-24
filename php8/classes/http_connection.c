@@ -418,6 +418,11 @@ PHP_EVENT_METHOD(EventHttpConnection, makeRequest)
 	if (evhttp_make_request(evcon->conn, http_req->ptr, type, uri)) {
 		RETURN_FALSE;
 	}
+
+	/* The connection owns the request from now on and frees it itself,
+	 * so don't evhttp_request_free() it in the free-storage handler. */
+	http_req->internal = 1;
+
 	RETVAL_TRUE;
 }
 /* }}} */

@@ -10,6 +10,7 @@ case "${SANITIZER:-none}" in
         ;;
     asan)
         export ASAN_OPTIONS="${ASAN_OPTIONS:-detect_leaks=1:abort_on_error=1}"
+        export LSAN_OPTIONS="${LSAN_OPTIONS:-suppressions=${root}/ci/lsan.supp:print_suppressions=0}"
         ;;
     *)
         echo "Unknown sanitizer: ${SANITIZER}" >&2
