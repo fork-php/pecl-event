@@ -35,11 +35,11 @@
     <email>remi@php.net</email>
     <active>yes</active>
   </contributor>
-  <date>2026-07-16</date>
+  <date>2026-10-24</date>
   <!-- {{{ Current version -->
   <version>
-    <release>3.1.6</release>
-    <api>3.1.4</api>
+    <release>3.2.0</release>
+    <api>3.2.0</api>
   </version>
   <stability>
     <release>stable</release>
@@ -47,7 +47,13 @@
   </stability>
   <license uri="http://www.php.net/license">PHP</license>
   <notes><![CDATA[
-    Fix PHP 8.6.0alpha2 build (patch by Remi Collet)
+    - Fixed heap buffer overflows in EventBuffer::read(), EventBuffer::copyout() and EventBuffer::pullup(): on negative lengths, ValueError is thrown on PHP 8, and a warning is generated on PHP 7) and the lengths are limited to the buffer size.
+    - EventSslContext: non-string local_cert/local_pk options are converted to string and property access no longer crashes after a failed constructor.
+    - EventBase and Event methods called after free() now throw an Error instead of crashing.
+    - EventHttpRequest::getHost() and getUri() now return NULL, not a crash, when the value is absent (return type is ?string).
+    - Fixed a memory leak of EventHttpRequest objects that were never submitted to a connection (PHP 8 only).
+    - Fixed configure on macOS/Homebrew: libevent is now found via pkg-config, and configure checks that libevent_openssl and PHP use the same OpenSSL, failing instead of producing an extension that crashes in the SSL classes.
+    - configure now honours --with-openssl-dir.
     ]]></notes>
   <!-- }}} -->
   <!-- {{{ Contents -->
@@ -226,6 +232,12 @@
         <file role="test" name="69-issue-event-cb-failure_php7.phpt" />
         <file role="test" name="69-issue-event-cb-failure_php8.phpt" />
         <file role="test" name="69-issue-event-cb-failure_php_pre_8_2_0.phpt" />
+        <file role="test" name="70-buffer-invalid-length.phpt" />
+        <file role="test" name="70-buffer-invalid-length_php7.phpt" />
+        <file role="test" name="71-freed-native-state.phpt" />
+        <file role="test" name="72-ssl-context-invalid-state.phpt" />
+        <file role="test" name="73-http-request-absent-host-uri.phpt" />
+        <file role="test" name="74-issue-3-http-request-free.phpt" />
       </dir>
     </dir>
   </contents>
@@ -259,6 +271,28 @@
   </extsrcrelease>
   <!-- {{{ changelog -->
   <changelog>
+    <!-- {{{ 3.2.0 -->
+    <release>
+      <version>
+        <release>3.2.0</release>
+        <api>3.2.0</api>
+      </version>
+      <stability>
+        <release>stable</release>
+        <api>stable</api>
+      </stability>
+      <license uri="http://www.php.net/license">PHP</license>
+      <notes><![CDATA[
+        - Fixed heap buffer overflows in EventBuffer::read(), EventBuffer::copyout() and EventBuffer::pullup(): on negative lengths, ValueError is thrown on PHP 8, and a warning is generated on PHP 7) and the lengths are limited to the buffer size.
+        - EventSslContext: non-string local_cert/local_pk options are converted to string and property access no longer crashes after a failed constructor.
+        - EventBase and Event methods called after free() now throw an Error instead of crashing.
+        - EventHttpRequest::getHost() and getUri() now return NULL, not a crash, when the value is absent (return type is ?string).
+        - Fixed a memory leak of EventHttpRequest objects that were never submitted to a connection (PHP 8 only).
+        - Fixed configure on macOS/Homebrew: libevent is now found via pkg-config, and configure checks that libevent_openssl and PHP use the same OpenSSL, failing instead of producing an extension that crashes in the SSL classes.
+        - configure now honours --with-openssl-dir.
+        ]]></notes>
+    </release>
+    <!-- }}} -->
     <!--{{{ 3.1.6 -->
     <release>
       <version>
