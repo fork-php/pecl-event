@@ -7,4 +7,4 @@ phpize
 #./configure --with-event-core --with-event-extra --with-event-openssl --with-event-ns='SomeNs' --enable-event-debug "$@"
 ./configure --with-event-core --with-event-extra --with-event-openssl --enable-event-debug "$@"
 make clean
-make -j3
+make -j"$(nproc)"

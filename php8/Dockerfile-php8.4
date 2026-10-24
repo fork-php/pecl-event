@@ -1,19 +1,20 @@
 FROM php:8.4.0alpha1-cli
 
-RUN apt-get update && apt-get install -y libssl3 libssl-dev libevent-dev
-RUN docker-php-ext-install sockets posix pcntl \
-    && docker-php-ext-enable --ini-name 0-sockets.ini sockets \
-    && docker-php-ext-enable posix pcntl
+ARG SANITIZER=""
+ENV SANITIZER="${SANITIZER}"
 
-RUN mkdir -p /usr/src/pecl-event
+RUN apt-get update \
+    && apt-get install -y libevent-dev libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /usr/src/pecl-event
-
 COPY . .
 
-RUN ./rebuild.sh
-RUN chmod +x run-tests.sh
+RUN ./ci/setup-php-docker.sh
+RUN ./ci/build.sh
+RUN docker-php-ext-enable --ini-name z-event.ini event
 
 ENV NO_INTERACTION=1
-CMD ["./run-tests.sh"]
+CMD ["./ci/test.sh"]
 
 # vim: ft=dockerfile

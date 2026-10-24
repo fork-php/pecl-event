@@ -5,6 +5,14 @@ services:
     build:
       context: .
       dockerfile: php8/Dockerfile
+  php85asantest:
+    stdin_open: true
+    image: ruslanosmanov/pecl-event-php85-asan-test
+    build:
+      context: .
+      dockerfile: php8/Dockerfile-php8.5
+      args:
+        SANITIZER: asan
   php81test:
     stdin_open: true
     image: ruslanosmanov/pecl-event-php81-test
@@ -29,7 +37,6 @@ services:
     build:
       context: .
       dockerfile: php7/Dockerfile
-
   php7rhel8test:
     stdin_open: true
     image: ruslanosmanov/pecl-event-php7rhel8-test

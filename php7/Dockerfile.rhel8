@@ -1,15 +1,24 @@
 FROM redhat/ubi8
 
-RUN dnf install -y openssl openssl-devel openssl-libs libevent libevent-devel php-cli php-devel make
+ARG SANITIZER=""
+ENV SANITIZER="${SANITIZER}"
 
-RUN mkdir -p /usr/src/pecl-event
+RUN dnf install -y \
+    openssl \
+    openssl-devel \
+    openssl-libs \
+    libevent \
+    libevent-devel \
+    php-cli \
+    php-devel \
+    make
+
 WORKDIR /usr/src/pecl-event
-
 COPY . .
 
-RUN ./rebuild.sh
+RUN ./ci/build.sh
+# `docker-php-ext-enable --ini-name z-event.ini event` is not available on this image
+RUN echo 'extension=event.so' > /etc/php.d/z-event.ini
 
 ENV NO_INTERACTION=1
-CMD ["./run-tests.sh"]
-
-# vim: ft=dockerfile
+CMD ["./ci/test.sh"]

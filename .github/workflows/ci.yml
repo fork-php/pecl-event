@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    name: PHP ${{ matrix.php }}
+    name: PHP ${{ matrix.php }} (${{ matrix.sanitizer }})
     runs-on: ubuntu-latest
 
     strategy:
@@ -18,6 +18,11 @@ jobs:
           - "8.5.2"
           - "8.4"
           - "8.3.10"
+        sanitizer:
+          - none
+        include:
+          - php: "8.5.2" # latest stable version for ASAN builds
+            sanitizer: asan
 
     container:
       image: php:${{ matrix.php }}-cli
@@ -29,24 +34,14 @@ jobs:
         run: apt-get update && apt-get install -y libevent-dev libssl-dev
 
       - name: Build and run tests
+        env:
+          SANITIZER: ${{ matrix.sanitizer }}
         shell: bash
         run: |
-          docker-php-ext-install sockets
-          docker-php-ext-enable --ini-name 0-sockets.ini sockets
-
-          docker-php-source extract
-
-          phpize
-          ./configure --with-event-core --with-event-extra --with-event-openssl --with-openssl-dir
-          make install
-
+          ./ci/setup-php-docker.sh
+          ./ci/build.sh
           docker-php-ext-enable --ini-name z-event.ini event
-
-          NO_INTERACTION=1 \
-            TEST_PHP_EXECUTABLE="$(which php)" \
-            php run-tests.php
-
-          docker-php-source delete
+          ./ci/test.sh
 
   ci:
     name: CI
