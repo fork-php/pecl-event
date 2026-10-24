@@ -32,6 +32,13 @@ distributions:
 Libevent can also be compiled from source, and the source code is available its
 [homepage](http://libevent.org/).
 
+AUTOMATIC INSTALLATION USING pie
+--------------------------------
+
+```
+pie install osmanov/pecl-event
+```
+
 AUTOMATIC INSTALLATION USING pecl COMMAND
 -----------------------------------------
 
