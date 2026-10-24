@@ -168,6 +168,15 @@ static inline void set_ssl_ctx_options(php_event_ssl_context_t *ectx)
 
 					zpk = zend_hash_index_find(ht, PHP_EVENT_OPT_LOCAL_PK);
 
+					convert_to_string_ex(zv);
+					if (zpk != NULL) {
+						convert_to_string_ex(zpk);
+					}
+					if (UNEXPECTED(Z_TYPE_P(zv) != IS_STRING
+								|| (zpk != NULL && Z_TYPE_P(zpk) != IS_STRING))) {
+						break;
+					}
+
 					if (zpk == NULL) {
 						_php_event_ssl_ctx_set_local_cert(ctx, Z_STRVAL_P(zv), NULL);
 					} else {

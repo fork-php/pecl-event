@@ -46,7 +46,8 @@ static zend_always_inline void _prop_read_zval(zval *pz, zval *retval)
 
 static zend_always_inline zval * get_ssl_option(const HashTable *ht, zend_ulong idx)/*{{{*/
 {
-	return zend_hash_index_find(ht, idx);
+	/* The table is NULL, if the context constructor has failed */
+	return ht ? zend_hash_index_find(ht, idx) : NULL;
 }/*}}}*/
 
 
@@ -247,7 +248,11 @@ static int event_ssl_context_local_cert_prop_write(void *obj, zval *value)/*{{{*
 {
 	php_event_ssl_context_t *ectx = (php_event_ssl_context_t *)obj;
 	zval *val                    = get_ssl_option(ectx->ht, PHP_EVENT_OPT_LOCAL_PK);
-	char *private_key            = val ? Z_STRVAL_P(val) : NULL;
+	char *private_key            = (val && Z_TYPE_P(val) == IS_STRING) ? Z_STRVAL_P(val) : NULL;
+
+	if (!ectx->ctx || Z_TYPE_P(value) != IS_STRING) {
+		return FAILURE;
+	}
 
 	return (_php_event_ssl_ctx_set_local_cert(ectx->ctx, Z_STRVAL_P(value), private_key) ? FAILURE : SUCCESS);
 }/*}}}*/
@@ -257,7 +262,7 @@ static zval * event_ssl_context_local_cert_prop_read(void *obj, zval *retval)/*{
 	php_event_ssl_context_t *ectx = (php_event_ssl_context_t *)obj;
 	zval *val                     = get_ssl_option(ectx->ht, PHP_EVENT_OPT_LOCAL_CERT);
 
-	if (val) {
+	if (val && Z_TYPE_P(val) == IS_STRING) {
 		ZVAL_STRINGL(retval, Z_STRVAL_P(val), Z_STRLEN_P(val));
 	} else {
 		ZVAL_NULL(retval);
@@ -277,7 +282,7 @@ static zval * event_ssl_context_local_pk_prop_read(void *obj, zval *retval)/*{{{
 	php_event_ssl_context_t *ectx = (php_event_ssl_context_t *)obj;
 	zval *val                     = get_ssl_option(ectx->ht, PHP_EVENT_OPT_LOCAL_PK);
 
-	if (val) {
+	if (val && Z_TYPE_P(val) == IS_STRING) {
 		ZVAL_STRINGL(retval, Z_STRVAL_P(val), Z_STRLEN_P(val));
 	} else {
 		ZVAL_NULL(retval);
