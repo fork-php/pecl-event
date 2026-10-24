@@ -126,8 +126,21 @@ if test "$PHP_EVENT_CORE" != "no"; then
   done
 
   if test "x$EVENT_DIR" = "x"; then
+    dnl Not in a conventional prefix (e.g. Homebrew keg, Nix, custom PKG_CONFIG_PATH):
+    dnl ask pkg-config where libevent is installed. Everything below keeps working
+    dnl with the prefix, exactly as if it had been given explicitly.
+    AC_PATH_PROG([EVENT_PKG_CONFIG], [pkg-config], [no])
+    if test "$EVENT_PKG_CONFIG" != "no" && "$EVENT_PKG_CONFIG" --exists libevent; then
+      i=`"$EVENT_PKG_CONFIG" --variable=prefix libevent`
+      if test -f "$i/include/event2/event.h"; then
+        EVENT_DIR=$i
+      fi
+    fi
+  fi
+
+  if test "x$EVENT_DIR" = "x"; then
     AC_MSG_RESULT([not found])
-    AC_MSG_ERROR([Please reinstall the event library, or provide the installation prefix via --with-event-libevent-dir option])
+    AC_MSG_ERROR([Please reinstall the event library, or provide the installation prefix via --with-event-libevent-dir option (or make libevent.pc visible via PKG_CONFIG_PATH)])
   fi
   AC_MSG_RESULT([found in $EVENT_DIR])
 
@@ -211,8 +224,70 @@ if test "$PHP_EVENT_CORE" != "no"; then
 
   dnl {{{ --with-event-openssl
   if test "$PHP_EVENT_OPENSSL" != "no"; then
+    dnl libevent_openssl and this extension must use the same OpenSSL: SSL objects are
+    dnl passed between them, and mixing major versions (e.g. Homebrew's openssl@3 and
+    dnl openssl@4) crashes. PHP_SETUP_OPENSSL finds OpenSSL via pkg-config only, so make
+    dnl pkg-config prefer the OpenSSL that libevent_openssl is linked with.
+    dnl Precedence: --with-openssl-dir=DIR, then OPENSSL_{CFLAGS,LIBS} from the
+    dnl environment, then the OpenSSL libevent_openssl links to, then the default.
+    event_libssl_of() {
+      case $host_os in
+        darwin*)
+          otool -L "[$]1" 2>/dev/null | awk '/libssl/ { print [$]1; exit }'
+          ;;
+        *)
+          ldd "[$]1" 2>/dev/null | awk '/libssl/ { for (i = 1; i <= NF; i++) if ([$]i ~ /^\//) { print [$]i; exit } }'
+          ;;
+      esac
+    }
+
+    event_ssl_so="$EVENT_LIBDIR/libevent_openssl.$SHLIB_SUFFIX_NAME"
+    event_ssl_dep=
+    if test -e "$event_ssl_so"; then
+      event_ssl_dep=`event_libssl_of "$event_ssl_so"`
+    fi
+    event_ssl_pcdir=
+
+    if test "$PHP_OPENSSL_DIR" != "no" -a "$PHP_OPENSSL_DIR" != "yes"; then
+      for i in "$PHP_OPENSSL_DIR/$PHP_LIBDIR/pkgconfig" "$PHP_OPENSSL_DIR/lib/pkgconfig"; do
+        if test -f "$i/openssl.pc"; then
+          event_ssl_pcdir="$i"
+          break
+        fi
+      done
+      if test -z "$event_ssl_pcdir"; then
+        AC_MSG_ERROR([openssl.pc not found under $PHP_OPENSSL_DIR (--with-openssl-dir)])
+      fi
+    elif test -z "$OPENSSL_LIBS" -a -z "$OPENSSL_CFLAGS" -a -n "$event_ssl_dep"; then
+      event_ssl_dir=`dirname "$event_ssl_dep"`
+      if test -f "$event_ssl_dir/pkgconfig/openssl.pc"; then
+        event_ssl_pcdir="$event_ssl_dir/pkgconfig"
+      fi
+    fi
+
+    if test -n "$event_ssl_pcdir"; then
+      AC_MSG_NOTICE([using OpenSSL pkg-config files from $event_ssl_pcdir])
+      PKG_CONFIG_PATH="$event_ssl_pcdir${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"
+      export PKG_CONFIG_PATH
+    fi
+
     dnl let php build system handle PHP_OPENSSL things
     PHP_SETUP_OPENSSL(EVENT_SHARED_LIBADD)
+
+    dnl Symbols of a PHP extension are bound flat at runtime, so the extension ends up
+    dnl using the OpenSSL already loaded by the PHP binary. Fail if it differs from
+    dnl the one libevent_openssl uses.
+    event_php_ssl_dep=
+    if test -n "$PHP_EXECUTABLE" -a -x "$PHP_EXECUTABLE"; then
+      event_php_ssl_dep=`event_libssl_of "$PHP_EXECUTABLE"`
+    fi
+    if test -n "$event_ssl_dep" -a -n "$event_php_ssl_dep"; then
+      event_ssl_name=`basename "$event_ssl_dep"`
+      event_php_ssl_name=`basename "$event_php_ssl_dep"`
+      if test "$event_ssl_name" != "$event_php_ssl_name"; then
+        AC_MSG_ERROR([libevent_openssl uses $event_ssl_name but PHP uses $event_php_ssl_name: mixing OpenSSL versions crashes the SSL classes. Use a libevent built against the same OpenSSL as PHP (e.g. upgrade libevent and PHP together on Homebrew), or build without SSL support using --without-event-openssl.])
+      fi
+    fi
 
     AC_CHECK_LIB(event_openssl, bufferevent_openssl_get_ssl, [
       PHP_ADD_LIBRARY_WITH_PATH(event_openssl, $EVENT_LIBDIR, EVENT_SHARED_LIBADD)
@@ -288,5 +363,5 @@ if test "$PHP_EVENT_CORE" != "no"; then
   PHP_ADD_MAKEFILE_FRAGMENT
 fi
 
-dnl vim: ft=m4.sh fdm=marker cms=dnl\ %s
+dnl vim: fdm=marker cms=dnl\ %s
 dnl vim: et ts=2 sts=2 sw=2
